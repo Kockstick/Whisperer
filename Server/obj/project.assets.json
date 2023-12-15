@@ -3179,24 +3179,33 @@
     ]
   },
   "packageFolders": {
-    "/home/KHPK.RU/student/.nuget/packages/": {}
+    "C:\\Users\\diesp\\.nuget\\packages\\": {},
+    "D:\\Program Files\\Visual Studio 2022\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/KHPK.RU/student/Рабочий стол/Whisperer/Server/Server.csproj",
+      "projectUniqueName": "F:\\Kostya\\Study\\Kursach\\Whisperer\\Server\\Server.csproj",
       "projectName": "Server",
-      "projectPath": "/home/KHPK.RU/student/Рабочий стол/Whisperer/Server/Server.csproj",
-      "packagesPath": "/home/KHPK.RU/student/.nuget/packages/",
-      "outputPath": "/home/KHPK.RU/student/Рабочий стол/Whisperer/Server/obj/",
+      "projectPath": "F:\\Kostya\\Study\\Kursach\\Whisperer\\Server\\Server.csproj",
+      "packagesPath": "C:\\Users\\diesp\\.nuget\\packages\\",
+      "outputPath": "F:\\Kostya\\Study\\Kursach\\Whisperer\\Server\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "D:\\Program Files\\Visual Studio 2022\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/KHPK.RU/student/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\diesp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "D:\\Windows Kits\\10\\Windows Performance Toolkit": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3236,7 +3245,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/7.0.109/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
