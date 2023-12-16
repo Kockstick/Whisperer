@@ -1,0 +1,15 @@
+F:\Kostya\Study\Kursach\Whisperer\ConsoleClient\bin\Debug\net7.0\ConsoleClient.exe
+F:\Kostya\Study\Kursach\Whisperer\ConsoleClient\bin\Debug\net7.0\ConsoleClient.deps.json
+F:\Kostya\Study\Kursach\Whisperer\ConsoleClient\bin\Debug\net7.0\ConsoleClient.runtimeconfig.json
+F:\Kostya\Study\Kursach\Whisperer\ConsoleClient\bin\Debug\net7.0\ConsoleClient.dll
+F:\Kostya\Study\Kursach\Whisperer\ConsoleClient\bin\Debug\net7.0\ConsoleClient.pdb
+F:\Kostya\Study\Kursach\Whisperer\ConsoleClient\obj\Debug\net7.0\ConsoleClient.csproj.AssemblyReference.cache
+F:\Kostya\Study\Kursach\Whisperer\ConsoleClient\obj\Debug\net7.0\ConsoleClient.GeneratedMSBuildEditorConfig.editorconfig
+F:\Kostya\Study\Kursach\Whisperer\ConsoleClient\obj\Debug\net7.0\ConsoleClient.AssemblyInfoInputs.cache
+F:\Kostya\Study\Kursach\Whisperer\ConsoleClient\obj\Debug\net7.0\ConsoleClient.AssemblyInfo.cs
+F:\Kostya\Study\Kursach\Whisperer\ConsoleClient\obj\Debug\net7.0\ConsoleClient.csproj.CoreCompileInputs.cache
+F:\Kostya\Study\Kursach\Whisperer\ConsoleClient\obj\Debug\net7.0\ConsoleClient.dll
+F:\Kostya\Study\Kursach\Whisperer\ConsoleClient\obj\Debug\net7.0\refint\ConsoleClient.dll
+F:\Kostya\Study\Kursach\Whisperer\ConsoleClient\obj\Debug\net7.0\ConsoleClient.pdb
+F:\Kostya\Study\Kursach\Whisperer\ConsoleClient\obj\Debug\net7.0\ConsoleClient.genruntimeconfig.cache
+F:\Kostya\Study\Kursach\Whisperer\ConsoleClient\obj\Debug\net7.0\ref\ConsoleClient.dll

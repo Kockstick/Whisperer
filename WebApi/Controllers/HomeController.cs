@@ -15,7 +15,9 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return RedirectToAction("SendMessage", "Chat", new { Id = 0, Text = "uwuwuuw" });
+        Debug.WriteLine("Start server");
+        return View();
+        //return RedirectToAction("SendMessage", "Chat", new { Text = "Hello world", ChatId = 1, SenderId = 1, Date = DateTime.Now });
     }
 
     public IActionResult Privacy()

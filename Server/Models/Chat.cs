@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Server.Database;
 using Server.Models;
 
 namespace Server.Models;
@@ -19,12 +20,15 @@ public class Chat
 
     public void SendMessage(Message message)
     {
-
+        using (var context = new WContext())
+        {
+            context.Messages.Add(message);
+            context.SaveChanges();
+        }
     }
 
     public void GetMessage(Message message)
     {
-        File.WriteAllText("logfile.txt", message.Text);
         if (OnGetMessage != null)
             OnGetMessage(message);
     }

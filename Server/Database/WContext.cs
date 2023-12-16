@@ -10,16 +10,26 @@ namespace Server.Database
 {
     public class WContext : DbContext
     {
-        public DbSet<Root> Roots;
-        public DbSet<User> Users;
-        public DbSet<Chat> Chats;
-        public DbSet<UsersChats> UsersChats;
+        public DbSet<Root> Roots { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Chat> Chats { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<UsersChats> UsersChats { get; set; }
 
-        private string connString = "Server=localhost;Port=5432;Database=pro9;UID=postgres;PWD=admin;Include Error Detail=True";
+        private string connString = "Server=localhost;Port=3306;Database=whispererdb;UID=root;PWD=Qwerty1#;";
+        //Include Error Detail=True
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connString);
+            optionsBuilder.UseMySql(connString, new MySqlServerVersion(new Version(8, 2, 0)));
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Chat>()
+                .ToTable("Chat");
+            modelBuilder.Entity<Message>()
+                .ToTable("Message");
         }
     }
 }

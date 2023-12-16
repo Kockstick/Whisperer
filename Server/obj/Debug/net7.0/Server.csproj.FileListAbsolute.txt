@@ -124,3 +124,5 @@ F:\Kostya\Study\Kursach\Whisperer\Server\obj\Debug\net7.0\refint\Server.dll
 F:\Kostya\Study\Kursach\Whisperer\Server\obj\Debug\net7.0\Server.pdb
 F:\Kostya\Study\Kursach\Whisperer\Server\obj\Debug\net7.0\Server.genruntimeconfig.cache
 F:\Kostya\Study\Kursach\Whisperer\Server\obj\Debug\net7.0\ref\Server.dll
+F:\Kostya\Study\Kursach\Whisperer\Server\bin\Debug\net7.0\MySqlConnector.dll
+F:\Kostya\Study\Kursach\Whisperer\Server\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll

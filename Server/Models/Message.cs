@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Server.Models;
@@ -16,6 +17,7 @@ namespace Server.Models
         public byte[]? File { get; set; }
         public int? ReplyMessageId { get; set; }
 
+        public Chat Chat { get; set; }
         public User Sender { get; set; }
         public Message? ReplyMessage { get; set; }
     }

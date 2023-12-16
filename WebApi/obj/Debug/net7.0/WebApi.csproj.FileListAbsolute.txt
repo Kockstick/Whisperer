@@ -104,3 +104,5 @@ F:\Kostya\Study\Kursach\Whisperer\WebApi\obj\Debug\net7.0\refint\WebApi.dll
 F:\Kostya\Study\Kursach\Whisperer\WebApi\obj\Debug\net7.0\WebApi.pdb
 F:\Kostya\Study\Kursach\Whisperer\WebApi\obj\Debug\net7.0\WebApi.genruntimeconfig.cache
 F:\Kostya\Study\Kursach\Whisperer\WebApi\obj\Debug\net7.0\ref\WebApi.dll
+F:\Kostya\Study\Kursach\Whisperer\WebApi\bin\Debug\net7.0\MySqlConnector.dll
+F:\Kostya\Study\Kursach\Whisperer\WebApi\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
