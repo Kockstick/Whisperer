@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using ConsoleClient.Models;
 
-namespace Server.Models
+namespace ConsoleClient.Models
 {
     public class Message
     {
