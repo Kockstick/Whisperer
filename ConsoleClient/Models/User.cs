@@ -1,3 +1,6 @@
+
+using Server.Models;
+
 namespace ConsoleClient.Models;
 
 public class User
@@ -6,5 +9,6 @@ public class User
     public string Login { get; set; }
     public string Password { get; set; }
     public string Name { get; set; }
-    public int ChatsId { get; set; }
+
+    public List<IpAddress> ipAddresses { get; set; }
 }
