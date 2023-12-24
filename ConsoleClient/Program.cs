@@ -1,35 +1,31 @@
 ﻿using System.Net.Http.Json;
 using System.Text;
+using ConsoleClient;
 using ConsoleClient.Models;
 using Microsoft.AspNetCore.SignalR.Client;
 using Newtonsoft.Json;
 
-string url = "http://localhost:5205/chat/";
-
-HubConnection connection = new HubConnectionBuilder()
-    .WithUrl(url)
-    .Build();
-
-connection.On<Message>("SendMessage", (message) =>
+User user = new User()
 {
-    Console.WriteLine(message.Text);
-});
+    Id = 1,
+    Name = "Kockstik",
+    Login = "admin",
+    Password = "admin"
+};
 
-await connection.StartAsync();
-await connection.InvokeAsync("JoinAsync", "MainChat");
-Console.WriteLine("Вы вошли в чат");
+var chatsControl = new ChatsControl();
+var messagesControl = new MessagesControl();
 
 while (true)
 {
-    var text = Console.ReadLine();
-
-    Message message = new Message()
+    if (user.CurrentChat == null)
     {
-        ChatId = 1,
-        SenderId = 1,
-        Date = DateTime.Now,
-        Text = text
-    };
+        user.CurrentChat = await chatsControl.GetChatAsync();
+        continue;
+    }
 
-    await connection.InvokeAsync("Send", message);
+    while (user.CurrentChat != null)
+    {
+        await messagesControl.ReceiveMessages(user);
+    }
 }
