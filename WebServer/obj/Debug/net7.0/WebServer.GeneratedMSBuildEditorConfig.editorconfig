@@ -16,6 +16,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = F:\Kostya\Study\Kursach\Whisperer\WebServer
 build_property._RazorSourceGeneratorDebug = 
 
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Chat/Chat.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxDaGF0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Chat/Chats.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxDaGF0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

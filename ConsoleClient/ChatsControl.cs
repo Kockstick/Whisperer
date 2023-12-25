@@ -5,7 +5,7 @@ namespace ConsoleClient;
 
 public class ChatsControl
 {
-    string url = "http://localhost:5205/home/";
+    string url = "http://localhost:5205/chat/";
     private User user;
     private CommandsControl cmd;
 

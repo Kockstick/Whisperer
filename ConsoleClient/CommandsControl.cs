@@ -7,7 +7,7 @@ namespace ConsoleClient;
 public class CommandsControl
 {
     string url = "http://localhost:5205/chat/";
-    string homeUrl = "http://localhost:5205/home/";
+    string homeUrl = "http://localhost:5205/chat/";
 
     private User user;
     private HubConnection connection;
