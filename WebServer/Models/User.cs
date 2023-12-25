@@ -12,5 +12,5 @@ public class User
     public int? CurrentChatId { get; set; }
 
     public Chat? CurrentChat { get; set; }
-    public List<Chat> CreatedChats { get; set; }
+    public List<UsersChats> UsersChats { get; set; }
 }

@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using WebServer.Data;
 using WebServer.Models;
 
@@ -29,13 +30,20 @@ public class ChatHub : Hub
 
     public async Task<Chat> JoinAsync(string chatName)
     {
-        Chat chat = dbContext.Chats.FirstOrDefault(c => c.Name == chatName);
+        var chat = dbContext.Chats.FirstOrDefault(c => c.Name == chatName);
+        if (chat == null)
+            return null;
+
         await Groups.AddToGroupAsync(Context.ConnectionId, chatName);
         return chat;
     }
 
     public async Task LeaveAsync(string chatName)
     {
+        var chat = dbContext.Chats.FirstOrDefault(c => c.Name == chatName);
+        if (chat == null)
+            return;
+
         await Groups.RemoveFromGroupAsync(Context.ConnectionId, chatName);
     }
 

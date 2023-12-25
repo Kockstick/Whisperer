@@ -1,3 +1,4 @@
+using System.Net.Http.Json;
 using ConsoleClient.Models;
 using Microsoft.AspNetCore.SignalR.Client;
 
@@ -6,8 +7,11 @@ namespace ConsoleClient;
 public class MessagesControl
 {
     string url = "http://localhost:5205/chat/";
+    string homeUrl = "http://localhost:5205/home/";
 
-    HubConnection connection;
+    private HubConnection connection;
+    private User user;
+    private CommandsControl cmd;
 
     public MessagesControl()
     {
@@ -19,7 +23,9 @@ public class MessagesControl
 
     public async Task<Message> ReceiveMessages(User user)
     {
-        await connection.InvokeAsync("JoinAsync", user.CurrentChat.Name);
+        this.user = user;
+        cmd = new CommandsControl(user);
+        await cmd.Connect(connection, user.CurrentChat.Name);
         Console.WriteLine("Вы вошли в чат");
 
         connection.On<Message>("SendMessage", (message) =>
@@ -27,9 +33,12 @@ public class MessagesControl
             Console.WriteLine(message.Text);
         });
 
-        while (user.CurrentChat.Name != null)
+        while (user.CurrentChat != null)
         {
             var text = Console.ReadLine();
+
+            if (cmd.Command(text))
+                continue;
 
             Message message = new Message()
             {

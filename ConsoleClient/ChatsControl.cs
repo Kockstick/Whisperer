@@ -6,31 +6,36 @@ namespace ConsoleClient;
 public class ChatsControl
 {
     string url = "http://localhost:5205/home/";
+    private User user;
+    private CommandsControl cmd;
 
-    public async Task<Chat> GetChatAsync()
+    private List<Chat> chats = new List<Chat>();
+
+    public async Task<Chat> GetChatAsync(User user)
     {
-        Console.WriteLine("Доступные чаты");
-
-        var chats = GetAll().Result;
-        chats.ForEach(u => Console.WriteLine(u.Name.ToString()));
+        this.user = user;
+        cmd = new CommandsControl(user);
+        cmd.OnUpdateChats += OnUpdateChats;
+        cmd.UpdateChats();
         Chat chat = null;
 
         while (chat == null)
         {
-            Console.WriteLine("Выбери чат");
-            var chatName = Console.ReadLine();
-            chat = chats.FirstOrDefault(c => c.Name == chatName);
+            Console.WriteLine("Выбери чат или введи команду");
+            var text = Console.ReadLine();
+
+            if (cmd.Command(text))
+                continue;
+
+            chat = chats.FirstOrDefault(c => c.Name == text);
         }
 
         return chat;
     }
 
-    public async Task<List<Chat>> GetAll()
+    private void OnUpdateChats(List<Chat> chats)
     {
-        HttpClient httpClient = new HttpClient();
-        httpClient.BaseAddress = new Uri(url);
-        var response = httpClient.GetAsync(url + "GetAllChats").Result;
-        List<Chat> chats = await response.Content.ReadFromJsonAsync<List<Chat>>();
-        return chats;
+        this.chats = chats;
     }
+
 }

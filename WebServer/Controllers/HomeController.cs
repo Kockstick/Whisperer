@@ -1,5 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Immutable;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebServer.Data;
 using WebServer.Models;
 
@@ -16,9 +18,26 @@ public class HomeController : Controller
         dbContext = serverDbContext;
     }
 
-    public async Task<IEnumerable<Chat>> GetAllChats()
+    public async Task<IEnumerable<Chat>> GetAllChats([FromBody] User user)
     {
-        return dbContext.Chats;
+        var chats = dbContext.UsersChats
+            .Where(u => u.UserId == user.Id)
+            .Select(c => c.Chat)
+            .ToList();
+
+        return chats;
+    }
+
+    public async Task CreateChat([FromBody] UsersChats usersChats)
+    {
+        var ch = dbContext.Chats.FirstOrDefault(c => c.Name == usersChats.Chat.Name);
+        if (ch != null)
+            return;
+
+        dbContext.Chats.Add(usersChats.Chat);
+        dbContext.UsersChats.Add(usersChats);
+
+        dbContext.SaveChanges();
     }
 
     public IActionResult Index()

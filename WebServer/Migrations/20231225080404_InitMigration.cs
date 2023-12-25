@@ -12,6 +12,19 @@ namespace WebServer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Chat",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Chat", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Roots",
                 columns: table => new
                 {
@@ -23,20 +36,6 @@ namespace WebServer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Roots", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Chat",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    CreatorId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Chat", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -94,11 +93,6 @@ namespace WebServer.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Chat_CreatorId",
-                table: "Chat",
-                column: "CreatorId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_User_CurrentChatId",
                 table: "User",
                 column: "CurrentChatId");
@@ -117,23 +111,11 @@ namespace WebServer.Migrations
                 name: "IX_UsersChats_UserId",
                 table: "UsersChats",
                 column: "UserId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Chat_User_CreatorId",
-                table: "Chat",
-                column: "CreatorId",
-                principalTable: "User",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Chat_User_CreatorId",
-                table: "Chat");
-
             migrationBuilder.DropTable(
                 name: "UsersChats");
 

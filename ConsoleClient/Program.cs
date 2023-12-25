@@ -20,7 +20,7 @@ while (true)
 {
     if (user.CurrentChat == null)
     {
-        user.CurrentChat = await chatsControl.GetChatAsync();
+        user.CurrentChat = await chatsControl.GetChatAsync(user);
         continue;
     }
 
@@ -28,4 +28,6 @@ while (true)
     {
         await messagesControl.ReceiveMessages(user);
     }
+
+    Thread.Sleep(1000);
 }

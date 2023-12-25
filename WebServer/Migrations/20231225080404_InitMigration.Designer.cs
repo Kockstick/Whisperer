@@ -12,7 +12,7 @@ using WebServer.Data;
 namespace WebServer.Migrations
 {
     [DbContext(typeof(ServerDbContext))]
-    [Migration("20231224083049_InitMigration")]
+    [Migration("20231225080404_InitMigration")]
     partial class InitMigration
     {
         /// <inheritdoc />
@@ -33,16 +33,11 @@ namespace WebServer.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CreatorId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CreatorId");
 
                     b.ToTable("Chat", (string)null);
                 });
@@ -125,21 +120,10 @@ namespace WebServer.Migrations
                     b.ToTable("UsersChats");
                 });
 
-            modelBuilder.Entity("WebServer.Models.Chat", b =>
-                {
-                    b.HasOne("WebServer.Models.User", "Creator")
-                        .WithMany("CreatedChats")
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Creator");
-                });
-
             modelBuilder.Entity("WebServer.Models.User", b =>
                 {
                     b.HasOne("WebServer.Models.Chat", "CurrentChat")
-                        .WithMany("Users")
+                        .WithMany()
                         .HasForeignKey("CurrentChatId");
 
                     b.Navigation("CurrentChat");
@@ -148,7 +132,7 @@ namespace WebServer.Migrations
             modelBuilder.Entity("WebServer.Models.UsersChats", b =>
                 {
                     b.HasOne("WebServer.Models.Chat", "Chat")
-                        .WithMany()
+                        .WithMany("UsersChats")
                         .HasForeignKey("ChatId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -160,7 +144,7 @@ namespace WebServer.Migrations
                         .IsRequired();
 
                     b.HasOne("WebServer.Models.User", "User")
-                        .WithMany()
+                        .WithMany("UsersChats")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -174,12 +158,12 @@ namespace WebServer.Migrations
 
             modelBuilder.Entity("WebServer.Models.Chat", b =>
                 {
-                    b.Navigation("Users");
+                    b.Navigation("UsersChats");
                 });
 
             modelBuilder.Entity("WebServer.Models.User", b =>
                 {
-                    b.Navigation("CreatedChats");
+                    b.Navigation("UsersChats");
                 });
 #pragma warning restore 612, 618
         }

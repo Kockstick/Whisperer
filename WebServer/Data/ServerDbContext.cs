@@ -19,14 +19,14 @@ public class ServerDbContext : DbContext
     {
         modelBuilder.Entity<User>()
             .ToTable("User")
-            .HasMany(u => u.CreatedChats)
-            .WithOne(c => c.Creator)
-            .HasForeignKey(c => c.CreatorId);
+            .HasMany(u => u.UsersChats)
+            .WithOne(u => u.User)
+            .HasForeignKey(f => f.UserId);
 
         modelBuilder.Entity<Chat>()
             .ToTable("Chat")
-            .HasMany(u => u.Users)
-            .WithOne(c => c.CurrentChat)
-            .HasForeignKey(f => f.CurrentChatId);
+            .HasMany(u => u.UsersChats)
+            .WithOne(c => c.Chat)
+            .HasForeignKey(f => f.ChatId);
     }
 }
