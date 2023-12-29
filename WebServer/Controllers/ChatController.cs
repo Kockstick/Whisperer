@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using WebServer.Data;
+using WebServer.Hubs;
 using WebServer.Models;
 
 namespace WebServer.Controllers;
@@ -45,13 +47,20 @@ public class ChatController : Controller
         dbContext.SaveChanges();
     }
 
-    public IActionResult Chat(Chat chat)
+    public async Task<IActionResult> Chat(Chat chat)
     {
+        ViewBag.Chats = await GetAllChats(1);
         ViewBag.Chat = chat;
         return View();
     }
 
     public async Task<IActionResult> Chats()
+    {
+        ViewBag.Chats = await GetAllChats(1);
+        return View();
+    }
+
+    public async Task<IActionResult> Main()
     {
         ViewBag.Chats = await GetAllChats(1);
         return View();

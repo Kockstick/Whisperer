@@ -5,12 +5,32 @@
       "PackagePath": "staticwebassets\\WebServer.bundle.scp.css"
     },
     {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\aside.css",
+      "PackagePath": "staticwebassets\\css\\aside.css"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\chat.css",
+      "PackagePath": "staticwebassets\\css\\chat.css"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\message.css",
+      "PackagePath": "staticwebassets\\css\\message.css"
+    },
+    {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\js\\aside.js",
+      "PackagePath": "staticwebassets\\js\\aside.js"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\js\\chatroom.js",
+      "PackagePath": "staticwebassets\\js\\chatroom.js"
     },
     {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\js\\site.js",

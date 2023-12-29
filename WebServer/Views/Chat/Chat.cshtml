@@ -2,4 +2,62 @@
     ViewData["Title"] = ViewBag.Chat?.Name;
 }
 
-<h1>@ViewBag.Chat?.Name</h1>
+<link rel="stylesheet" href="~/css/chat.css" asp-append-version="true" />
+
+<div>
+    <div id="input-row">
+        <input id="message-input" />
+        <button id="send-btn"><span class="material-symbols-sharp">send</span></button>
+    </div>
+
+    <div id="chatroom">
+
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+
+<script>
+    var SendBtn = document.getElementById("send-btn");
+    var MessageInput = document.getElementById("message-input");
+    var ChatRoom = document.getElementById("chatroom");
+
+    var hubConnection = new signalR.HubConnectionBuilder()
+        .withUrl("/Chat")
+        .build();
+
+    SendBtn.onclick = () => {
+        var text = MessageInput.value;
+
+        var message = {
+            ChatId: @ViewBag.Chat?.Id,
+            SenderId: 1,
+            text: text
+        };
+
+        hubConnection.invoke("Send", message);
+
+        message.text = "You: " + message.text;
+        printMessage(message);
+
+        MessageInput.value = "";
+    }
+
+    hubConnection.on("SendMessage", function (message) {
+        printMessage(message);
+    });
+
+    function printMessage(message) {
+        var template = document.getElementById("message-template");
+        var mesElem = template.content.cloneNode(true);
+        mesElem.querySelector("p").appendChild(document.createTextNode(message.text));
+
+        var firstEl = ChatRoom.firstChild;
+        ChatRoom.appendChild(mesElem);
+    }
+
+    hubConnection.start()
+        .then(function () {
+            hubConnection.invoke("JoinAsync", "@ViewBag.Chat.Name");
+        });
+</script>

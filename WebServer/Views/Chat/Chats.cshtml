@@ -6,7 +6,7 @@
     foreach (var item in ViewBag.Chats)
     {
         <form asp-controller="chat" asp-action="Chat">
-            <input class="visually-hidden" name="Id" type="submit" value="@item?.Id" />
+            <input class="visually-hidden" name="Id" value="@item?.Id" />
             <input name="Name" value="@item?.Name" />
             <button type="submit">open</button>
         </form>
