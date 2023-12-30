@@ -35,6 +35,12 @@ p {
     color: var(--color-dark);
 }
 
+#main-container {
+    top: 1.5rem;
+    height: 85%;
+    background-color: var(--color-white);
+}
+
 #input-row {
     display: flex;
     position: absolute;
@@ -46,17 +52,13 @@ p {
 
 #message-input {
     min-height: 5vh;
-    border-radius: 15px;
     padding: 1rem;
     width: 100%;
-    box-shadow: var(--box-shadow);
 }
 
 #send-btn {
-    border-radius: 15px;
     padding: 1rem;
     background-color: var(--color-primary);
-    box-shadow: var(--box-shadow);
 }
 
 #send-btn span {

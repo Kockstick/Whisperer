@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "ConsoleCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer", "WebServer\WebServer.csproj", "{CC1C34EE-78F2-4D4D-8364-4F85BADCC6FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient", "WebClient\WebClient.csproj", "{EBC3700E-CC12-4001-905C-BBBBC35D1B7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{CC1C34EE-78F2-4D4D-8364-4F85BADCC6FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC1C34EE-78F2-4D4D-8364-4F85BADCC6FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC1C34EE-78F2-4D4D-8364-4F85BADCC6FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBC3700E-CC12-4001-905C-BBBBC35D1B7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBC3700E-CC12-4001-905C-BBBBC35D1B7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBC3700E-CC12-4001-905C-BBBBC35D1B7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBC3700E-CC12-4001-905C-BBBBC35D1B7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -116,3 +116,9 @@ b {
   gap: 1.8rem;
   grid-template-columns: 12rem auto 23rem;
 }
+
+.default-elem {
+  border-radius: 15px;
+  box-shadow: var(--box-shadow);
+
+}
