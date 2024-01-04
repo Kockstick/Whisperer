@@ -1,4 +1,6 @@
 using System.Diagnostics;
+using System.Net;
+using System.Runtime.InteropServices.Marshalling;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +24,11 @@ public class ChatHub : Hub
         {
             var chat = dbContext.Chats.Find(message.ChatId);
             await Clients.OthersInGroup(chat.Name).SendAsync("SendMessage", message);
+
+            message.Sender = dbContext.Users.Find(message.SenderId);
+
+            dbContext.Messages.Add(message);
+            dbContext.SaveChanges();
         }
         catch (Exception ex)
         {
@@ -36,6 +43,13 @@ public class ChatHub : Hub
             return null;
 
         await Groups.AddToGroupAsync(Context.ConnectionId, chatName);
+
+        var messages = dbContext.Messages.Where(c => c.ChatId == chat.Id).ToList();
+        foreach (var message in messages)
+        {
+            Clients.Caller.SendAsync("SendMessage", message);
+        }
+
         return chat;
     }
 

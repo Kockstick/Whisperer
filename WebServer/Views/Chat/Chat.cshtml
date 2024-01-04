@@ -4,56 +4,98 @@
 
 <link rel="stylesheet" href="~/css/chat.css" asp-append-version="true" />
 
-<div id="main-container" class="default-elem">
+<div id="main-container">
     <div id="input-row">
-        <input id="message-input" class="default-elem" />
+        <input id="message-input" class="default-elem" autofocus placeholder="Type something..." />
         <button id="send-btn" class="default-elem"><span class="material-symbols-sharp">send</span></button>
     </div>
 
-    <div id="chatroom">
-
+    <div id="chatroom-container">
+        <div id="chatroom">
+        </div>
     </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+<script src="~/js/chat.js" asp-append-version="true"></script>
 
 <script>
     var SendBtn = document.getElementById("send-btn");
     var MessageInput = document.getElementById("message-input");
     var ChatRoom = document.getElementById("chatroom");
+    var ScrollCont = document.getElementById("chatroom-container");
 
     var hubConnection = new signalR.HubConnectionBuilder()
         .withUrl("/Chat")
         .build();
 
+    MessageInput.addEventListener('keydown', function (e) {
+        if (e.keyCode === 13) {
+            sendMessage();
+        }
+    });
+
     SendBtn.onclick = () => {
+        sendMessage();
+    }
+
+    hubConnection.on("SendMessage", function (message) {
+        printMessage(message, "other-message");
+    });
+
+    function printMessage(message, classes) {
+        var template = document.getElementById("message-template");
+        var mesElem = template.content.cloneNode(true);
+
+        var paragraph = mesElem.querySelector("p");
+        paragraph.appendChild(document.createTextNode(message.text));
+
+        var date = mesElem.getElementById("date-message");
+        var messageDate = new Date(message.date);
+        date.appendChild(document.createTextNode(getNiceDate(messageDate)));
+
+        var name = mesElem.getElementById("name-message");
+        //if (message.sender != null)
+        name.appendChild(document.createTextNode(message.sender?.name));
+
+        paragraph.parentNode.classList.add(classes);
+
+        var firstEl = ChatRoom.firstChild;
+        ChatRoom.appendChild(mesElem);
+        ScrollCont.scrollTop = 9999;
+    }
+
+    function sendMessage() {
         var text = MessageInput.value;
+        if (text == "")
+            return;
 
         var message = {
             ChatId: @ViewBag.Chat?.Id,
             SenderId: 1,
-            text: text
+            text: text,
+            date: new Date()
         };
 
         hubConnection.invoke("Send", message);
 
-        message.text = "You: " + message.text;
-        printMessage(message);
+        printMessage(message, "my-message");
 
         MessageInput.value = "";
     }
 
-    hubConnection.on("SendMessage", function (message) {
-        printMessage(message);
-    });
+    function getNiceDate(fullDate) {
+        var options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric'
+        };
 
-    function printMessage(message) {
-        var template = document.getElementById("message-template");
-        var mesElem = template.content.cloneNode(true);
-        mesElem.querySelector("p").appendChild(document.createTextNode(message.text));
-
-        var firstEl = ChatRoom.firstChild;
-        ChatRoom.appendChild(mesElem);
+        var dateStr = fullDate.toLocaleString('ru-RU', options);
+        return dateStr;
     }
 
     hubConnection.start()

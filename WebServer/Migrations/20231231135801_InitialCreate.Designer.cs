@@ -12,8 +12,8 @@ using WebServer.Data;
 namespace WebServer.Migrations
 {
     [DbContext(typeof(ServerDbContext))]
-    [Migration("20231225080404_InitMigration")]
-    partial class InitMigration
+    [Migration("20231231135801_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,43 @@ namespace WebServer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Chat", (string)null);
+                });
+
+            modelBuilder.Entity("WebServer.Models.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ChatId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<byte[]>("File")
+                        .HasColumnType("bytea");
+
+                    b.Property<int?>("ReplyMessageId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SenderId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChatId");
+
+                    b.HasIndex("ReplyMessageId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("WebServer.Models.Root", b =>
@@ -118,6 +155,31 @@ namespace WebServer.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UsersChats");
+                });
+
+            modelBuilder.Entity("WebServer.Models.Message", b =>
+                {
+                    b.HasOne("WebServer.Models.Chat", "Chat")
+                        .WithMany()
+                        .HasForeignKey("ChatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebServer.Models.Message", "ReplyMessage")
+                        .WithMany()
+                        .HasForeignKey("ReplyMessageId");
+
+                    b.HasOne("WebServer.Models.User", "Sender")
+                        .WithMany()
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Chat");
+
+                    b.Navigation("ReplyMessage");
+
+                    b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("WebServer.Models.User", b =>

@@ -39,6 +39,8 @@
   border: 0;
   text-decoration: 0;
   box-sizing: border-box;
+  scrollbar-color: var(--color-primary) transparent;
+  scrollbar-width: thin;
 }
 
 html {
@@ -121,4 +123,21 @@ b {
   border-radius: 15px;
   box-shadow: var(--box-shadow);
 
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 6px;
+  height: 0.1rem;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  height: 1rem;
 }

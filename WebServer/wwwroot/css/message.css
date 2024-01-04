@@ -35,12 +35,47 @@ p {
     color: var(--color-dark);
 }
 
+small {
+    color: var(--color-dark);
+}
+
 .message {
     background-color: var(--color-white);
-    box-shadow: var(--box-shadow);
     border-radius: 15px;
     min-width: 40%;
     max-width: 60%;
-    padding: 1rem;
-    margin: 0 0 auto 0;
+    padding: 0.5rem 0.7rem;
+    box-shadow: 0 0 2px 1px transparent;
+    transition: all 0.3s ease;
+}
+
+.message:hover {
+    box-shadow: 0 0 2px 1px var(--color-primary);
+}
+
+.my-message {
+    background-color: var(--color-primary);
+    align-self: flex-end;
+    border-radius: 15px 15px 5px 15px;
+}
+
+.my-message p,
+.my-message small {
+    color: var(--color-white);
+}
+
+.other-message {
+    background-color: var(--color-white);
+    border: 2px solid var(--color-light);
+    align-self: flex-start;
+    border-radius: 15px 15px 15px 5px;
+}
+
+.message .down-row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.other-message #name-message {
+    color: var(--color-primary);
 }

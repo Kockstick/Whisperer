@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GM/TocD5dsOAR4+4YEU1T1zao7949q13KQ1jlyvSPXk=",
+  "Hash": "wWhwPYYOGyNZngxb1nwty6bPQy8K+U6HYcAJUUtNV48=",
   "Source": "WebServer",
   "BasePath": "_content/WebServer",
   "Mode": "Default",
@@ -153,12 +153,12 @@
       "OriginalItemSpec": "wwwroot\\js\\aside.js"
     },
     {
-      "Identity": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\js\\chatroom.js",
+      "Identity": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\js\\chat.js",
       "SourceId": "WebServer",
       "SourceType": "Discovered",
       "ContentRoot": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\",
       "BasePath": "_content/WebServer",
-      "RelativePath": "js/chatroom.js",
+      "RelativePath": "js/chat.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -167,7 +167,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\chatroom.js"
+      "OriginalItemSpec": "wwwroot\\js\\chat.js"
     },
     {
       "Identity": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\js\\site.js",

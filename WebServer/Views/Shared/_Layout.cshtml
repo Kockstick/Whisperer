@@ -33,7 +33,7 @@
                         }
                     }
                 }
-                <form>
+                <form asp-controller="home" asp-action="index">
                     <button>
                         <h3>Logout</h3>
                     </button>
@@ -56,6 +56,12 @@
 
 <template id="message-template">
     <div class="message">
+        <small id="name-message"></small>
         <p></p>
+        <div class="down-row">
+
+            <small id="date-message"></small>
+
+        </div>
     </div>
 </template>

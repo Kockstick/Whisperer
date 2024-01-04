@@ -8,6 +8,7 @@ public class ServerDbContext : DbContext
     public DbSet<Root> Roots { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Chat> Chats { get; set; }
+    public DbSet<Message> Messages { get; set; }
     public DbSet<UsersChats> UsersChats { get; set; }
 
     public ServerDbContext(DbContextOptions<ServerDbContext> options) : base(options)
