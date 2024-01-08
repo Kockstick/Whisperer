@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wWhwPYYOGyNZngxb1nwty6bPQy8K+U6HYcAJUUtNV48=",
+  "Hash": "bq1OOg+8IpAwstFy57gp9/VHlLBDmXuN5q/+NAFi98E=",
   "Source": "WebServer",
   "BasePath": "_content/WebServer",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\WebServer.bundle.scp.css"
+    },
+    {
+      "Identity": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\account.css",
+      "SourceId": "WebServer",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\",
+      "BasePath": "_content/WebServer",
+      "RelativePath": "css/account.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\account.css"
     },
     {
       "Identity": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\aside.css",

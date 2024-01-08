@@ -59,6 +59,18 @@ body {
   background-color: var(--color-background);
 }
 
+.container {
+  display: grid;
+  width: 96%;
+  margin: 0, auto;
+  gap: 1.8rem;
+  grid-template-columns: 12rem auto 23rem;
+}
+
+main {
+  height: 100vh;
+}
+
 a,
 form {
   color: var(--color-dark);
@@ -89,6 +101,11 @@ p {
 
 b {
   color: var(--color-dark);
+}
+
+input {
+  border-radius: 5px;
+  padding: 0.5rem;
 }
 
 .text-muted {
@@ -122,22 +139,19 @@ b {
 .default-elem {
   border-radius: 15px;
   box-shadow: var(--box-shadow);
-
 }
 
 ::-webkit-scrollbar {
   background-color: transparent;
   width: 6px;
-  height: 0.1rem;
-  margin: 1rem;
-  padding: 1rem;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--color-primary);
-  margin: 1rem;
-  padding: 1rem;
   border-radius: 5px;
-  height: 1rem;
+}
+
+::-webkit-scrollbar-track {
+  margin: 1rem;
 }

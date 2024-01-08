@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\WebServer.bundle.scp.css"
     },
     {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\account.css",
+      "PackagePath": "staticwebassets\\css\\account.css"
+    },
+    {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\aside.css",
       "PackagePath": "staticwebassets\\css\\aside.css"
     },

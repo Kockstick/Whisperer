@@ -42,15 +42,21 @@ small {
 .message {
     background-color: var(--color-white);
     border-radius: 15px;
-    min-width: 40%;
-    max-width: 60%;
+    min-width: 30%;
+    max-width: 70%;
     padding: 0.5rem 0.7rem;
     box-shadow: 0 0 2px 1px transparent;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .message:hover {
-    box-shadow: 0 0 2px 1px var(--color-primary);
+    box-shadow: var(--box-shadow);
+}
+
+.message p,
+.message small {
+    overflow-wrap: break-word;
 }
 
 .my-message {
@@ -61,7 +67,7 @@ small {
 
 .my-message p,
 .my-message small {
-    color: var(--color-white);
+    color: white;
 }
 
 .other-message {

@@ -25,8 +25,6 @@ public class ChatHub : Hub
             var chat = dbContext.Chats.Find(message.ChatId);
             await Clients.OthersInGroup(chat.Name).SendAsync("SendMessage", message);
 
-            message.Sender = dbContext.Users.Find(message.SenderId);
-
             dbContext.Messages.Add(message);
             dbContext.SaveChanges();
         }
@@ -44,10 +42,10 @@ public class ChatHub : Hub
 
         await Groups.AddToGroupAsync(Context.ConnectionId, chatName);
 
-        var messages = dbContext.Messages.Where(c => c.ChatId == chat.Id).ToList();
-        foreach (var message in messages)
+        var messages = dbContext.Messages.Where(c => c.ChatId == chat.Id).Include(u => u.Sender).ToList();
+        for (int i = messages.Count - 1; i > 0; i--)
         {
-            Clients.Caller.SendAsync("SendMessage", message);
+            Clients.Caller.SendAsync("SendMessage", messages[i]);
         }
 
         return chat;

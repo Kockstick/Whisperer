@@ -1,0 +1,100 @@
+@import url(site.css);
+
+:root {
+    --color-primary: #6C9BCF;
+    --color-danger: #FF0060;
+    --color-success: #1B9C85;
+    --color-warning: #F7D060;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+.dark-mode-variables {
+    --color-background: #181a1e;
+    --color-white: #202528;
+    --color-dark: #edeffd;
+    --color-dark-variant: #a3bdcc;
+    --color-light: rgba(0, 0, 0, 0.4);
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+#login-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+#login-container form {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto auto;
+    background-color: var(--color-background);
+    border-radius: 15px;
+    border: 1px solid var(--color-primary);
+    box-shadow: 0 0 10px 0px var(--color-primary);
+    padding: 2rem;
+    gap: 1rem;
+}
+
+#login-container form div {
+    display: flex;
+    flex-direction: column;
+}
+
+#login-container form .first {
+    gap: 0.1 rem;
+}
+
+#login-container form .first .fogot-pswd-btn {
+    padding: 0;
+    align-self: flex-end;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+#login-container form .singin-btn {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+#login-container button {
+    border-radius: 5px;
+    padding: 0.5rem;
+    box-shadow: var(--box-shadow);
+}
+
+#login-container form .singup-btn {
+    background-color: transparent;
+    box-shadow: none;
+    padding-bottom: 0;
+}
+
+#login-container form input {
+    border: 1px solid var(--color-light);
+    box-shadow: var(--box-shadow);
+}
+
+aside {
+    display: none;
+}

@@ -42,10 +42,29 @@ aside .sidebar form button {
 h3 {
     display: flex;
     margin: 0 auto;
+    color: var(--color-dark);
 }
 
 aside {
     height: 100vh;
+    width: 100%;
+}
+
+aside .toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.4rem;
+}
+
+aside .toggle .logo {
+    display: flex;
+    gap: 0.5rem;
+}
+
+aside .toggle .close {
+    padding-right: 1rem;
+    display: none;
 }
 
 aside .sidebar {
@@ -56,8 +75,8 @@ aside .sidebar {
     border-radius: 15px;
     position: relative;
     top: 1.5rem;
-    bottom: 6rem;
-    height: 85%;
+    margin-bottom: 10rem;
+    height: 88vh;
     overflow: hidden;
     transition: all 0.3s ease;
 }

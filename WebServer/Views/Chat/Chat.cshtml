@@ -4,15 +4,15 @@
 
 <link rel="stylesheet" href="~/css/chat.css" asp-append-version="true" />
 
-<div id="main-container">
+<div class="main-container">
+    <div class="chatroom-container">
+        <div class="chatroom">
+        </div>
+    </div>
+
     <div id="input-row">
         <input id="message-input" class="default-elem" autofocus placeholder="Type something..." />
         <button id="send-btn" class="default-elem"><span class="material-symbols-sharp">send</span></button>
-    </div>
-
-    <div id="chatroom-container">
-        <div id="chatroom">
-        </div>
     </div>
 </div>
 
@@ -22,8 +22,8 @@
 <script>
     var SendBtn = document.getElementById("send-btn");
     var MessageInput = document.getElementById("message-input");
-    var ChatRoom = document.getElementById("chatroom");
-    var ScrollCont = document.getElementById("chatroom-container");
+    var ChatRoom = document.querySelector(".chatroom");
+    var ScrollCont = document.querySelector(".chatroom-container");
 
     var hubConnection = new signalR.HubConnectionBuilder()
         .withUrl("/Chat")
@@ -61,7 +61,9 @@
         paragraph.parentNode.classList.add(classes);
 
         var firstEl = ChatRoom.firstChild;
+
         ChatRoom.appendChild(mesElem);
+
         ScrollCont.scrollTop = 9999;
     }
 
