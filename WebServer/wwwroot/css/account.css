@@ -73,7 +73,7 @@
     box-shadow: none;
 }
 
-#login-container form .singin-btn {
+#login-container form .primary-btn {
     background-color: var(--color-primary);
     color: var(--color-white);
 }
@@ -84,7 +84,7 @@
     box-shadow: var(--box-shadow);
 }
 
-#login-container form .singup-btn {
+#login-container form .secondary-btn {
     background-color: transparent;
     box-shadow: none;
     padding-bottom: 0;

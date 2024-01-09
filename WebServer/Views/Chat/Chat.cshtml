@@ -40,7 +40,10 @@
     }
 
     hubConnection.on("SendMessage", function (message) {
-        printMessage(message, "other-message");
+        if (message.senderId == @ViewBag.User?.Id)
+            printMessage(message, "my-message");
+        else
+            printMessage(message, "other-message");
     });
 
     function printMessage(message, classes) {
@@ -74,8 +77,9 @@
 
         var message = {
             ChatId: @ViewBag.Chat?.Id,
-            SenderId: 1,
+            SenderId: @ViewBag.User?.Id,
             text: text,
+            sender: @ViewBag.User,
             date: new Date()
         };
 

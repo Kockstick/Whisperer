@@ -35,6 +35,7 @@
                         foreach (var item in ViewBag.Chats)
                         {
                             <form class="@(ViewBag.Chat?.Id == item?.Id ? "active" : "")" asp-controller="Chat" asp-action="Chat">
+                                <input name="User" class="visually-hidden" value="@ViewBag.User" />
                                 <input name="Id" class="visually-hidden" value="@item?.Id" />
                                 <input name="Name" class="visually-hidden" value="@item?.Name" />
                                 <button type="submit">
@@ -60,6 +61,9 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/aside.js" asp-append-version="true"></script>
+    <script>
+        alert(@ViewBag.User);
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

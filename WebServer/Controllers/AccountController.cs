@@ -1,10 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
+using WebServer.Data;
 using WebServer.Models;
 
 namespace WebServer.Controllers;
 
 public class AccountController : Controller
 {
+    private ServerDbContext dbContext;
+
+    public AccountController(ServerDbContext serverDbContext)
+    {
+        dbContext = serverDbContext;
+    }
+
     [HttpGet]
     public IActionResult Login()
     {
@@ -14,7 +22,14 @@ public class AccountController : Controller
     [HttpPost]
     public IActionResult Login(LoginModel loginModel)
     {
-        return RedirectToAction("Main", "Chat");
+        var user = dbContext.Users.FirstOrDefault(u => u.Login == loginModel.Login);
+
+        if (user == null)
+            return RedirectToAction("Login");
+        if (user.Password != loginModel.Password)
+            return RedirectToAction("Login");
+
+        return RedirectToAction("Main", "Chat", user);
     }
 
     [HttpGet]

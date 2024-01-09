@@ -47,22 +47,24 @@ public class ChatController : Controller
         dbContext.SaveChanges();
     }
 
-    public async Task<IActionResult> Chat(Chat chat)
+    public async Task<IActionResult> Chat(User user, Chat chat)
     {
-        ViewBag.Chats = await GetAllChats(1);
+        ViewBag.Chats = await GetAllChats(user.Id);
         ViewBag.Chat = chat;
         return View();
     }
 
-    public async Task<IActionResult> Chats()
+    public async Task<IActionResult> Chats(User user)
     {
-        ViewBag.Chats = await GetAllChats(1);
+        ViewBag.User = user;
+        ViewBag.Chats = await GetAllChats(user.Id);
         return View();
     }
 
-    public async Task<IActionResult> Main()
+    public async Task<IActionResult> Main(User user)
     {
-        ViewBag.Chats = await GetAllChats(1);
+        ViewBag.User = user;
+        ViewBag.Chats = await GetAllChats(user.Id);
         return View();
     }
 }
