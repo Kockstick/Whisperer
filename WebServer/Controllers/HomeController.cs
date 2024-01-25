@@ -21,6 +21,7 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         //return RedirectToAction("Main", "Chat");
+
         return RedirectToAction("Login", "Account");
     }
 
