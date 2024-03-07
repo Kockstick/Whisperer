@@ -29,6 +29,7 @@ public class AccountController : Controller
         if (user.Password != loginModel.Password)
             return RedirectToAction("Login");
 
+        HttpContext.Response.Cookies.Append("id", user.Id.ToString());
         return RedirectToAction("Main", "Chat", user);
     }
 

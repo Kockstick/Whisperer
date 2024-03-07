@@ -47,24 +47,51 @@ public class ChatController : Controller
         dbContext.SaveChanges();
     }
 
-    public async Task<IActionResult> Chat(User user, Chat chat)
+    public async Task<IActionResult> Chat(Chat chat)
     {
+        var user = getUser();
+        if (user == null)
+            return RedirectToAction("Login", "Account");
         ViewBag.Chats = await GetAllChats(user.Id);
         ViewBag.Chat = chat;
+        ViewBag.User = user;
         return View();
     }
 
-    public async Task<IActionResult> Chats(User user)
+    public async Task<IActionResult> Chats()
     {
+        var user = getUser();
+        if (user == null)
+            return RedirectToAction("Login", "Account");
         ViewBag.User = user;
         ViewBag.Chats = await GetAllChats(user.Id);
         return View();
     }
 
-    public async Task<IActionResult> Main(User user)
+    public async Task<IActionResult> Main()
     {
+        var user = getUser();
+        if (user == null)
+            return RedirectToAction("Login", "Account");
         ViewBag.User = user;
         ViewBag.Chats = await GetAllChats(user.Id);
         return View();
+    }
+
+    private User getUser()
+    {
+        int id = getUserId();
+        if (id == 0)
+            return null;
+        var user = dbContext.Users.FirstOrDefault(u => u.Id == id);
+        return user;
+    }
+
+    private int getUserId()
+    {
+        if (!HttpContext.Request.Cookies.ContainsKey("id"))
+            return 0;
+        int id = Convert.ToInt32(HttpContext.Request.Cookies["id"]);
+        return id;
     }
 }
