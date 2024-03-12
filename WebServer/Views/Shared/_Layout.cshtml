@@ -7,7 +7,6 @@
     <title>@ViewData["Title"] - WebServer</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/aside.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/message.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebServer.styles.css" asp-append-version="true" />
     <link rel="stylesheet"
@@ -20,6 +19,7 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+        <partial name="~/Views/partials/r_aside.cshtml" />
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

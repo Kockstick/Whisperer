@@ -34,8 +34,23 @@ public class AccountController : Controller
     }
 
     [HttpGet]
-    public IActionResult Register()
+    public IActionResult SingUp()
     {
         return View();
+    }
+
+    [HttpPost]
+    public IActionResult SingUp(User user)
+    {
+        try
+        {
+            dbContext.Users.Add(user);
+            dbContext.SaveChanges();
+            return RedirectToAction("Login");
+        }
+        catch
+        {
+            return RedirectToAction("SingUp");
+        }
     }
 }

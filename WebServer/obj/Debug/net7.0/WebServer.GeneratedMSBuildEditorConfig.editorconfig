@@ -20,6 +20,10 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Account/SingUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTaW5nVXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Chat/Chat.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxDaGF0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -38,6 +42,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/partials/aside.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NccGFydGlhbHNcYXNpZGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/partials/r_aside.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NccGFydGlhbHNccl9hc2lkZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Shared/Error.cshtml]

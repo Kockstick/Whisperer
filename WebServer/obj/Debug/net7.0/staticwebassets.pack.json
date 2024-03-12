@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\css\\message.css"
     },
     {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\r_aside.css",
+      "PackagePath": "staticwebassets\\css\\r_aside.css"
+    },
+    {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
