@@ -23,7 +23,8 @@ public class ChatHub : Hub
         try
         {
             var chat = dbContext.Chats.Find(message.ChatId);
-            await Clients.OthersInGroup(chat.Name).SendAsync("SendMessage", message);
+            message.Sender = dbContext.Users.Find(message.SenderId);
+            await Clients.Group(chat.Name).SendAsync("SendMessage", message); // OthersInGroup(chat.Name).SendAsync("SendMessage", message);
 
             dbContext.Messages.Add(message);
             dbContext.SaveChanges();
@@ -42,10 +43,10 @@ public class ChatHub : Hub
 
         await Groups.AddToGroupAsync(Context.ConnectionId, chatName);
 
-        var messages = dbContext.Messages.Where(c => c.ChatId == chat.Id).Include(u => u.Sender).ToList();
-        for (int i = messages.Count - 1; i > 0; i--)
+        var messages = dbContext.Messages.Where(c => c.ChatId == chat.Id).Include(u => u.Sender).ToList().OrderBy(i => i.Id).ToList();
+        for (int i = 0; i < messages.Count; i++)
         {
-            Clients.Caller.SendAsync("SendMessage", messages[i]);
+            await Clients.Caller.SendAsync("SendMessage", messages[i]);
         }
 
         return chat;

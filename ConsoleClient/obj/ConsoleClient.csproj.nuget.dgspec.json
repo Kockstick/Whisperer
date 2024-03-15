@@ -14,7 +14,11 @@
         "outputPath": "/home/KHPK.RU/student/Рабочий стол/Whisperer/ConsoleClient/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
+<<<<<<< HEAD
           "/home/KHPK.RU/student/.nuget/NuGet/NuGet.Config"
+=======
+          "C:\\Users\\diesp\\AppData\\Roaming\\NuGet\\NuGet.Config"
+>>>>>>> origin/home
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -63,7 +67,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/7.0.109/RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.405\\RuntimeIdentifierGraph.json"
+>>>>>>> origin/home
         }
       }
     }

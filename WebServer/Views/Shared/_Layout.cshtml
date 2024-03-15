@@ -7,7 +7,6 @@
     <title>@ViewData["Title"] - WebServer</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/aside.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/message.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebServer.styles.css" asp-append-version="true" />
     <link rel="stylesheet"
@@ -16,45 +15,11 @@
 
 <body>
     <div class="container">
-        <aside>
-            <div class="toggle">
-                <div class="logo">
-                    <h2><span class="danger">W</span>hisperer</h2>
-                    <div class="close" id="close-btn">
-                        <span class="material-symbols-sharp">
-                            close
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="sidebar">
-                @{
-                    if (ViewBag.Chats != null)
-                    {
-                        foreach (var item in ViewBag.Chats)
-                        {
-                            <form class="@(ViewBag.Chat?.Id == item?.Id ? "active" : "")" asp-controller="Chat" asp-action="Chat">
-                                <input name="User" class="visually-hidden" value="@ViewBag.User" />
-                                <input name="Id" class="visually-hidden" value="@item?.Id" />
-                                <input name="Name" class="visually-hidden" value="@item?.Name" />
-                                <button type="submit">
-                                    <h3>@item?.Name</h3>
-                                </button>
-                            </form>
-                        }
-                    }
-                }
-                <form asp-controller="home" asp-action="index">
-                    <button>
-                        <h3>Logout</h3>
-                    </button>
-                </form>
-            </div>
-        </aside>
+        <partial name="~/Views/partials/aside.cshtml" />
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+        <partial name="~/Views/partials/r_aside.cshtml" />
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -62,7 +27,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/aside.js" asp-append-version="true"></script>
     <script>
-        alert(@ViewBag.User);
+
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<link rel="stylesheet" href="~/css/account.css" asp-append-version="true" />
+
+<div id="login-container">
+    <form asp-controller="Account">
+        <div class="first">
+            <input required placeholder="Name" name="Name" />
+            <input required placeholder="Login" name="Login" />
+            <input required placeholder="Password" name="Password" />
+        </div>
+
+        <div class="second">
+            <button class="primary-btn" type="submit" method="post" asp-action="SingUp">Sing up</button>
+        </div>
+    </form>
+</div>

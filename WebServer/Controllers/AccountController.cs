@@ -29,12 +29,28 @@ public class AccountController : Controller
         if (user.Password != loginModel.Password)
             return RedirectToAction("Login");
 
+        HttpContext.Response.Cookies.Append("id", user.Id.ToString());
         return RedirectToAction("Main", "Chat", user);
     }
 
     [HttpGet]
-    public IActionResult Register()
+    public IActionResult SingUp()
     {
         return View();
+    }
+
+    [HttpPost]
+    public IActionResult SingUp(User user)
+    {
+        try
+        {
+            dbContext.Users.Add(user);
+            dbContext.SaveChanges();
+            return RedirectToAction("Login");
+        }
+        catch
+        {
+            return RedirectToAction("SingUp");
+        }
     }
 }

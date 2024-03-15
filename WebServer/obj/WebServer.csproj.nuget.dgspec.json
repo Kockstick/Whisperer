@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer/WebServer.csproj": {}
+    "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\WebServer.csproj": {}
   },
   "projects": {
-    "/home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer/WebServer.csproj": {
+    "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\WebServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer/WebServer.csproj",
+        "projectUniqueName": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\WebServer.csproj",
         "projectName": "WebServer",
-        "projectPath": "/home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer/WebServer.csproj",
-        "packagesPath": "/home/KHPK.RU/student/.nuget/packages/",
-        "outputPath": "/home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer/obj/",
+        "projectPath": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\WebServer.csproj",
+        "packagesPath": "C:\\Users\\diesp\\.nuget\\packages\\",
+        "outputPath": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/KHPK.RU/student/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\diesp\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -78,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/7.0.109/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.405\\RuntimeIdentifierGraph.json"
         }
       }
     }

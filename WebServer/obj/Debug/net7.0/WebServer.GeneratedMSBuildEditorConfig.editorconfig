@@ -9,53 +9,61 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = WebServer
 build_property.RootNamespace = WebServer
-build_property.ProjectDir = /home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer/
+build_property.ProjectDir = F:\Kostya\Study\Kursach\Whisperer\WebServer\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer
+build_property.MSBuildProjectDirectory = F:\Kostya\Study\Kursach\Whisperer\WebServer
 build_property._RazorSourceGeneratorDebug = 
 
-[/home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer/Views/Account/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer/Views/Chat/Chat.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hhdC9DaGF0LmNzaHRtbA==
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Account/SingUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTaW5nVXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer/Views/Chat/Chats.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hhdC9DaGF0cy5jc2h0bWw=
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Chat/Chat.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxDaGF0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer/Views/Chat/Main.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hhdC9NYWluLmNzaHRtbA==
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Chat/Main.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxNYWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/partials/aside.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NccGFydGlhbHNcYXNpZGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/partials/r_aside.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NccGFydGlhbHNccl9hc2lkZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/KHPK.RU/student/Рабочий стол/Whisperer/WebServer/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-g0bu9l5faf
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-goiz0xmca9

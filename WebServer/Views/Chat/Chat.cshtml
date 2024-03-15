@@ -40,11 +40,20 @@
     }
 
     hubConnection.on("SendMessage", function (message) {
-        if (message.senderId == @ViewBag.User?.Id)
+        /*if (Request.Cookies["id"].Value == null)
+            return;*/
+        //let id = Request.Cookies["id"].Value;
+        var id = getCookie("id");
+        if (message.senderId == id)
             printMessage(message, "my-message");
         else
             printMessage(message, "other-message");
     });
+
+    function getCookie(name) {
+        var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
 
     function printMessage(message, classes) {
         var template = document.getElementById("message-template");
@@ -77,15 +86,15 @@
 
         var message = {
             ChatId: @ViewBag.Chat?.Id,
-            SenderId: @ViewBag.User?.Id,
+            SenderId: @ViewBag.User.Id,
             text: text,
-            sender: @ViewBag.User,
+            sender: null,
             date: new Date()
         };
 
         hubConnection.invoke("Send", message);
 
-        printMessage(message, "my-message");
+        //printMessage(message, "my-message");
 
         MessageInput.value = "";
     }
