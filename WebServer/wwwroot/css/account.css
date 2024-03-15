@@ -93,6 +93,8 @@
 #login-container form input {
     border: 1px solid var(--color-light);
     box-shadow: var(--box-shadow);
+    background: var(--color-background);
+    color: var(--color-dark);
 }
 
 aside {

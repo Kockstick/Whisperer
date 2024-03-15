@@ -58,16 +58,6 @@ public class ChatController : Controller
         return View();
     }
 
-    public async Task<IActionResult> Chats()
-    {
-        var user = getUser();
-        if (user == null)
-            return RedirectToAction("Login", "Account");
-        ViewBag.User = user;
-        ViewBag.Chats = await GetAllChats(user.Id);
-        return View();
-    }
-
     public async Task<IActionResult> Main()
     {
         var user = getUser();

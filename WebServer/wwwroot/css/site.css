@@ -63,6 +63,14 @@ main {
   height: 100vh;
 }
 
+.container {
+  display: grid;
+  width: 96%;
+  margin: 0 auto;
+  gap: 1.8rem;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
 a,
 form {
   color: var(--color-dark);
@@ -118,14 +126,6 @@ input {
 
 .warning {
   color: var(--color-warning);
-}
-
-.container {
-  display: grid;
-  width: 96%;
-  margin: 0, auto;
-  gap: 1.8rem;
-  grid-template-columns: 1fr 2fr 1fr;
 }
 
 .default-elem {

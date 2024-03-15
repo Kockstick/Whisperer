@@ -42,7 +42,6 @@ p {
     height: 100vh;
     background-color: var(--color-background);
     padding: 0 0.5rem;
-    
     gap: 0.8rem;
     opacity: 0;
     transition: all 0.5s ease;
