@@ -1,6 +1,11 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using WebServer;
 using WebServer.Data;
 using WebServer.Hubs;
+using WebServer.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddSignalR();
 builder.Services.AddDbContext<ServerDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("WhispererDb")));
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options => options.LoginPath = "/Login"); ;
 
 var app = builder.Build();
 
@@ -29,6 +36,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

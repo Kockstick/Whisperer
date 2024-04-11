@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="~/css/contacts_block.css" asp-append-version="true" />
+
+<div class="contacts-container">
+    <div class="no-contacts-message">
+        <h3>You don't have any contacts</h3>
+        <form asp-controller="Home" asp-action="Search" method="get">
+            <button type="submit" class="button primary-btn">Search</button>
+        </form>
+    </div>
+</div>
+
+<template id="contact-template">
+    <div class="contact">
+        <input type="hidden" class="contact-id"></input>
+        <h3 class="contact-name"></h3>
+    </div>
+</template>
+
+<script>
+    let contactTemplate = document.getElementById("contact-template");
+    let contactsContainer = document.querySelector(".contacts-container");
+    let noContactsMessage = document.querySelector(".no-contacts-message");
+
+    GetAllContacts().then(contacts => {
+        if (contacts.length > 0)
+            noContactsMessage.style.display = "none";
+
+        contacts.forEach(user => {
+            let contactItem = contactTemplate.content.cloneNode(true);
+
+            let divContact = contactItem.querySelector(".contact");
+            divContact.addEventListener('click', onContactClick);
+
+            let idContact = contactItem.querySelector(".contact-id");
+            idContact.value = user.id;
+            let nameContact = contactItem.querySelector(".contact-name");
+            nameContact.innerText = user.name;
+
+            contactsContainer.appendChild(contactItem);
+        });
+    });
+
+    function onContactClick(event) {
+        var contactDiv = event.target.closest('.contact');
+
+        if (contactDiv.classList.contains('contact-selected'))
+            contactDiv.classList.remove("contact-selected");
+        else
+            contactDiv.classList.add("contact-selected");
+
+        sendRequest('/Home/AddContact', 'POST', user);
+    }
+
+    async function GetAllContacts() {
+        let response = await fetch('/Home/GetContacts/');
+        return response.json();
+    }
+</script>

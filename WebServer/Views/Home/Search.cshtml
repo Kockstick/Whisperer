@@ -1,0 +1,151 @@
+@{
+    ViewData["Title"] = "Search";
+}
+
+<link rel="stylesheet" href="~/css/search.css" asp-append-version="true" />
+
+<div class="main-container">
+    <div class="search-container">
+        <div class="default-elem input-container">
+            <input placeholder="Field for your text...">
+            <span class="material-symbols-sharp">
+                search
+            </span>
+        </div>
+        <div class="default-elem results-container">
+            <h2 class="empty-text">For now, it's empty here...<br>Why don't you try searching for something?</h2>
+        </div>
+    </div>
+</div>
+
+<template id="search-contact-template">
+    <div class="contact-div">
+        <input id="id-contact" type="hidden" name="Id">
+        <h2 id="name-contact" name="Name"></h2>
+        <div class="dash-line"></div>
+        <span id="add-contact-span" class="material-symbols-sharp person-add">
+            person_add
+        </span>
+        <span id="remove-contact-span" class="material-symbols-sharp person-cansel">
+            person_cancel
+        </span>
+    </div>
+</template>
+
+<script>
+    let inputField = document.querySelector(".input-container input");
+    let resultsContainer = document.querySelector(".results-container");
+    let textEmpty = document.querySelector(".empty-text");
+    let contactTemplate = document.getElementById("search-contact-template");
+
+    findContacts('');
+
+    function sendRequest(url, method, data) {
+        console.log("send query");
+        return fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => {
+            console.log("get respponce");
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        }).then(data => {
+            console.log('Server response:', data);
+            // Добавьте здесь логику обработки успешного ответа сервера, если необходимо
+        }).catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+        });
+    }
+
+    function handleAddContact(event) {
+        var contactDiv = event.target.closest('.contact-div');
+        var userId = contactDiv.querySelector('input[name="Id"]').value;
+        var userName = contactDiv.querySelector('h2[name="Name"]').textContent;
+        var user = { Id: userId, Name: userName };
+
+        if (!contactDiv.classList.contains('in-contact'))
+            contactDiv.classList.add("in-contact");
+
+        sendRequest('/Home/AddContact', 'POST', user);
+    }
+
+    function handleRemoveContact(event) {
+        var contactDiv = event.target.closest('.contact-div');
+        var userId = contactDiv.querySelector('input[name="Id"]').value;
+        var userName = contactDiv.querySelector('h2[name="Name"]').textContent;
+        var user = { Id: userId, Name: userName };
+
+        if (contactDiv.classList.contains('in-contact'))
+            contactDiv.classList.remove("in-contact");
+
+        sendRequest('/Home/RemoveContact', 'POST', user);
+    }
+
+    inputField.addEventListener("input", function (event) {
+        findContacts(event.target.value);
+    });
+
+    function findContacts(text) {
+        let data = search(text).then(users => {
+            if (users.length > 0)
+                textEmpty.style.display = "none";
+            else
+                textEmpty.style.display = "unset";
+
+            fetch('/Home/GetContacts/').then(responce => {
+                responce.json().then(contacts => {
+                    var contactForms = document.querySelectorAll('.results-container .contact-div');
+                    contactForms.forEach(function (form) {
+                        form.parentNode.removeChild(form);
+                    });
+
+                    users.forEach(user => {
+                        contactItem = contactTemplate.content.cloneNode(true);
+
+                        if (contacts.some(contact => contact.id === user.id))
+                            contactItem.querySelector(".contact-div").classList.add("in-contact");
+
+                        let idContact = contactItem.getElementById("id-contact");
+                        idContact.value = user.id;
+                        let nameContact = contactItem.getElementById("name-contact");
+                        nameContact.innerText = user.name;
+
+                        var addButton = contactItem.querySelector('.material-symbols-sharp.person-add');
+                        addButton.addEventListener('click', handleAddContact);
+                        var removeButton = contactItem.querySelector('.material-symbols-sharp.person-cansel');
+                        removeButton.addEventListener('click', handleRemoveContact);
+
+                        resultsContainer.appendChild(contactItem);
+                    });
+                });
+            });
+        });
+    }
+
+    async function search(text) {
+        try {
+            let response = await fetch('/Home/Search?', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(text)
+            });
+
+            if (!response.ok) {
+                console.log("Error query");
+            }
+
+            let data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Ошибка:', error);
+            return []; // В случае ошибки возвращаем пустой список
+        }
+    }
+</script>

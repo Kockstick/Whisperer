@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="~/css/chats_aside.css" asp-append-version="true" />
+
+<aside>
+    <div class="sidebar chats_sidebar">
+    </div>
+</aside>
+
+<template id="chat-item_template">
+    <form class="" asp-controller="Chat" asp-action="Chat">
+        <input name="User" class="visually-hidden" value="@ViewBag.User" />
+        <input name="Id" class="visually-hidden" value="" />
+        <input name="Name" class="visually-hidden" value="" />
+        <button type="submit">
+            <h3></h3>
+        </button>
+    </form>
+</template>
+
+<script>
+    let sidebarElement = document.querySelector('.sidebar.chats_sidebar');
+    let template = document.getElementById('chat-item_template');
+    const activeChatId = '@ViewBag.Chat?.Id';
+
+    const chats = getAllChats()
+        .then(chats => {
+            chats.forEach(chat => {
+                let chatItem = template.content.cloneNode(true);
+
+                chatItem.querySelector('input[name="Id"]').value = chat.id;
+                chatItem.querySelector('input[name="Name"]').value = chat.name;
+                chatItem.querySelector('h3').textContent = chat.name;
+
+                if (activeChatId == chat.id) {
+                    chatItem.querySelector('form').classList.add('active');
+
+                }
+
+                sidebarElement.appendChild(chatItem);
+            });
+        });
+
+    async function getAllChats() {
+        try {
+            const response = await fetch(`/Chat/GetAllChats`);
+            if (!response.ok) {
+                console.log('Network response was not ok. Status: ' + response.status);
+            }
+            const chats = await response.json();
+            return chats;
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+        }
+    }
+</script>

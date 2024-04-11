@@ -1033,19 +1033,19 @@
     ]
   },
   "packageFolders": {
-    "/home/KHPK.RU/student/.nuget/packages/": {}
+    "C:\\Users\\diesp\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/KHPK.RU/student/Рабочий стол/Whisperer/ConsoleClient/ConsoleClient.csproj",
+      "projectUniqueName": "F:\\Kostya\\Study\\Kursach\\Whisperer\\ConsoleClient\\ConsoleClient.csproj",
       "projectName": "ConsoleClient",
-      "projectPath": "/home/KHPK.RU/student/Рабочий стол/Whisperer/ConsoleClient/ConsoleClient.csproj",
-      "packagesPath": "/home/KHPK.RU/student/.nuget/packages/",
-      "outputPath": "/home/KHPK.RU/student/Рабочий стол/Whisperer/ConsoleClient/obj/",
+      "projectPath": "F:\\Kostya\\Study\\Kursach\\Whisperer\\ConsoleClient\\ConsoleClient.csproj",
+      "packagesPath": "C:\\Users\\diesp\\.nuget\\packages\\",
+      "outputPath": "F:\\Kostya\\Study\\Kursach\\Whisperer\\ConsoleClient\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/KHPK.RU/student/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\diesp\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -1094,7 +1094,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/7.0.109/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.405\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,0 +1,106 @@
+@{
+    ViewData["Title"] = "Create";
+}
+
+<link rel="stylesheet" href="~/css/create_chat.css" asp-append-version="true" />
+
+<div class="main-container">
+    <div class="default-elem create_chat_container">
+        <div class="load-photo-container">
+            <span class="material-symbols-sharp no-image-span">
+                add_photo_alternate
+            </span>
+            <img class="image-preview" style="position: absolute; opacity: 0; border-radius: 15px;">
+            <input class="input-file" type="file" multiple accept="image/*"
+                style="position: absolute; aspect-ratio: 1/1; opacity: 0;">
+        </div>
+
+        <div class="inputs-container">
+            <input class="chat-name" placeholder="Chat name">
+            <textarea placeholder="Description"></textarea>
+        </div>
+
+        <partial name="~/Views/partials/contacts_block.cshtml" />
+
+        <span class="ok-button material-symbols-sharp">
+            check
+        </span>
+    </div>
+</div>
+
+<script>
+    let span = document.querySelector(".no-image-span");
+    let input = document.querySelector(".input-file");
+    let image = document.querySelector(".image-preview");
+
+    resize();
+
+    window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        var resizeTimer = setTimeout(function () {
+            resize();
+        }, 250);
+    });
+
+    input.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                image.src = e.target.result;
+                image.style.opacity = 1;
+                span.style.opacity = 0;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    function resize() {
+        var sourceElementWidth = span.offsetWidth;
+        var sourceElementHeight = span.offsetHeight;
+        input.style.width = sourceElementWidth + 'px';
+        input.style.height = sourceElementHeight + 'px';
+        image.style.width = sourceElementWidth + 'px';
+        image.style.height = sourceElementHeight + 'px';
+    }
+</script>
+
+<script>
+    let inputField = document.querySelector(".inputs-container .chat-name");
+    let okBtn = document.querySelector(".ok-button");
+
+    inputField.addEventListener("input", event => {
+        if (event.target.value.length > 0) {
+            if (!okBtn.classList.contains('ok-btn-enabled'))
+                okBtn.classList.add("ok-btn-enabled");
+        }
+        else {
+            if (okBtn.classList.contains('ok-btn-enabled'))
+                okBtn.classList.remove("ok-btn-enabled");
+        }
+    });
+
+    okBtn.addEventListener("click", e => {
+        let contacts = document.querySelectorAll(".contact-selected");
+        let idList = Array.from(contacts).map(contact => {
+            return contact.querySelector(".contact-id").value;
+        });
+
+        var createModel = {
+            Name: inputField.value,
+            UsersId: idList,
+        }
+
+        fetch('/Chat/Create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(createModel),
+            redirect: "follow",
+        }).then(response => {
+            if (response.redirected)
+                window.location.href = response.url;
+        });
+    });
+</script>

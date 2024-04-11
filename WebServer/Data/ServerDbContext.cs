@@ -10,6 +10,7 @@ public class ServerDbContext : DbContext
     public DbSet<Chat> Chats { get; set; }
     public DbSet<Message> Messages { get; set; }
     public DbSet<UsersChats> UsersChats { get; set; }
+    public DbSet<Contact> Contacts { get; set; }
 
     public ServerDbContext(DbContextOptions<ServerDbContext> options) : base(options)
     {
@@ -19,15 +20,21 @@ public class ServerDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<User>()
-            .ToTable("User")
+            .ToTable("Users")
             .HasMany(u => u.UsersChats)
             .WithOne(u => u.User)
             .HasForeignKey(f => f.UserId);
 
         modelBuilder.Entity<Chat>()
-            .ToTable("Chat")
+            .ToTable("Chats")
             .HasMany(u => u.UsersChats)
             .WithOne(c => c.Chat)
             .HasForeignKey(f => f.ChatId);
+
+        modelBuilder.Entity<User>()
+            .ToTable("Users")
+            .HasMany(u => u.Contacts)
+            .WithOne(u => u.User)
+            .HasForeignKey(f => f.UserId);
     }
 }

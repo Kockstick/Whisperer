@@ -36,7 +36,30 @@ namespace WebServer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Chat", (string)null);
+                    b.ToTable("Chats", (string)null);
+                });
+
+            modelBuilder.Entity("WebServer.Models.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ContactUserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContactUserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("WebServer.Models.Message", b =>
@@ -104,9 +127,6 @@ namespace WebServer.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CurrentChatId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Login")
                         .IsRequired()
                         .HasColumnType("text");
@@ -121,9 +141,7 @@ namespace WebServer.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CurrentChatId");
-
-                    b.ToTable("User", (string)null);
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("WebServer.Models.UsersChats", b =>
@@ -154,6 +172,25 @@ namespace WebServer.Migrations
                     b.ToTable("UsersChats");
                 });
 
+            modelBuilder.Entity("WebServer.Models.Contact", b =>
+                {
+                    b.HasOne("WebServer.Models.User", "ContactUser")
+                        .WithMany()
+                        .HasForeignKey("ContactUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebServer.Models.User", "User")
+                        .WithMany("Contacts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ContactUser");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("WebServer.Models.Message", b =>
                 {
                     b.HasOne("WebServer.Models.Chat", "Chat")
@@ -177,15 +214,6 @@ namespace WebServer.Migrations
                     b.Navigation("ReplyMessage");
 
                     b.Navigation("Sender");
-                });
-
-            modelBuilder.Entity("WebServer.Models.User", b =>
-                {
-                    b.HasOne("WebServer.Models.Chat", "CurrentChat")
-                        .WithMany()
-                        .HasForeignKey("CurrentChatId");
-
-                    b.Navigation("CurrentChat");
                 });
 
             modelBuilder.Entity("WebServer.Models.UsersChats", b =>
@@ -222,6 +250,8 @@ namespace WebServer.Migrations
 
             modelBuilder.Entity("WebServer.Models.User", b =>
                 {
+                    b.Navigation("Contacts");
+
                     b.Navigation("UsersChats");
                 });
 #pragma warning restore 612, 618

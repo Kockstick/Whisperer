@@ -73,23 +73,6 @@
     box-shadow: none;
 }
 
-#login-container form .primary-btn {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-}
-
-#login-container button {
-    border-radius: 5px;
-    padding: 0.5rem;
-    box-shadow: var(--box-shadow);
-}
-
-#login-container form .secondary-btn {
-    background-color: transparent;
-    box-shadow: none;
-    padding-bottom: 0;
-}
-
 #login-container form input {
     border: 1px solid var(--color-light);
     box-shadow: var(--box-shadow);

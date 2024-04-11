@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="~/css/menu_aside.css" asp-append-version="true" />
+
+<aside>
+    <div class="sidebar menu_sidebar">
+        <form asp-controller="Home" asp-action="Search" method="get">
+            <button type="submit">
+                <h3>Search 🔍</h3>
+            </button>
+        </form>
+        <form asp-controller="Home" asp-action="Profile" method="get">
+            <button type="submit">
+                <h3>Profile 👤</h3>
+            </button>
+        </form>
+        <form asp-controller="Chat" asp-action="Create" method="get">
+            <button type="submit">
+                <h3>Create ✏️</h3>
+            </button>
+        </form>
+        <form asp-controller="Home" asp-action="Settings" method="get">
+            <button type="submit">
+                <h3>Settings ⚙️</h3>
+            </button>
+        </form>
+        <form asp-controller="Account" asp-action="Logout" method="get">
+            <button type="submit">
+                <h3>Logout</h3>
+            </button>
+        </form>
+    </div>
+</aside>
+
+<script>
+    var currentUrl = window.location.pathname;
+
+    var forms = document.querySelectorAll('aside .menu_sidebar form');
+
+    forms.forEach(function (f) {
+        var action = f.action;
+
+        if (action.includes(currentUrl)) {
+            f.classList.add('active');
+        }
+    });
+</script>

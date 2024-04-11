@@ -1,4 +1,10 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using WebServer.Data;
 using WebServer.Models;
 
@@ -16,21 +22,33 @@ public class AccountController : Controller
     [HttpGet]
     public IActionResult Login()
     {
-        return View();
+        if (HttpContext.User.Identity.IsAuthenticated)
+            return RedirectToAction("Main", "Chat");
+        else
+            return View();
     }
 
     [HttpPost]
-    public IActionResult Login(LoginModel loginModel)
+    public async Task<IActionResult> Login(LoginModel loginModel)
     {
         var user = dbContext.Users.FirstOrDefault(u => u.Login == loginModel.Login);
 
         if (user == null)
-            return RedirectToAction("Login");
+            return BadRequest("User was not found"); //Results.Unauthorized();//return RedirectToAction("Login");
         if (user.Password != loginModel.Password)
-            return RedirectToAction("Login");
+            return BadRequest("Incorrect password");  //Results.Unauthorized();//return RedirectToAction("Login");
+
+        var claims = new List<Claim> { new Claim("Id", user.Id.ToString()), new Claim(ClaimTypes.Name, loginModel.Login) };
+
+        ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Cookies");
+
+        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+        Console.WriteLine("Enter user " + HttpContext.User.FindFirst(ClaimTypes.Name)?.Value);
 
         HttpContext.Response.Cookies.Append("id", user.Id.ToString());
-        return RedirectToAction("Main", "Chat", user);
+        HttpContext.Response.Cookies.Append("username", loginModel.Login);
+
+        return RedirectToAction("Main", "Chat"); //Results.Json(response);
     }
 
     [HttpGet]
@@ -52,5 +70,13 @@ public class AccountController : Controller
         {
             return RedirectToAction("SingUp");
         }
+    }
+
+    [Authorize]
+    [HttpGet]
+    public IActionResult Logout()
+    {
+        HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        return RedirectToAction("Login");
     }
 }

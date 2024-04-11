@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using WebServer.Data;
@@ -6,6 +7,7 @@ using WebServer.Models;
 
 namespace WebServer.Controllers;
 
+[Authorize]
 public class ChatController : Controller
 {
     private ServerDbContext dbContext;
@@ -15,36 +17,50 @@ public class ChatController : Controller
         dbContext = serverDbContext;
     }
 
-    public async Task<IEnumerable<Chat>> GetAllChats([FromBody] User user)
+    [HttpGet]
+    public async Task<List<Chat>> GetAllChats()
     {
         var chats = dbContext.UsersChats
-            .Where(u => u.UserId == user.Id)
+            .Where(u => u.UserId == getUser().Id)
             .Select(c => c.Chat)
             .ToList();
 
         return chats;
     }
 
-    public async Task<IEnumerable<Chat>> GetAllChats(int UserId)
+    [HttpGet]
+    public IActionResult Create()
     {
-        var chats = dbContext.UsersChats
-            .Where(u => u.UserId == UserId)
-            .Select(c => c.Chat)
-            .ToList();
-
-        return chats;
+        return View();
     }
 
-    public async Task CreateChat([FromBody] UsersChats usersChats)
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateChatModel createModel)
     {
-        var ch = dbContext.Chats.FirstOrDefault(c => c.Name == usersChats.Chat.Name);
-        if (ch != null)
-            return;
-
-        dbContext.Chats.Add(usersChats.Chat);
-        dbContext.UsersChats.Add(usersChats);
+        Chat chat = new Chat();
+        chat.Name = createModel.Name;
+        dbContext.Chats.Add(chat);
 
         dbContext.SaveChanges();
+
+        var usersChats = new UsersChats();
+        usersChats.ChatId = chat.Id;
+        usersChats.UserId = getUserId();
+        usersChats.RootId = 1;
+        dbContext.UsersChats.Add(usersChats);
+
+        foreach (var item in createModel.UsersId)
+        {
+            usersChats = new UsersChats();
+            usersChats.ChatId = chat.Id;
+            usersChats.UserId = item;
+            usersChats.RootId = 1;
+            dbContext.UsersChats.Add(usersChats);
+        }
+
+        dbContext.SaveChanges();
+
+        return RedirectToAction("Chat", chat);
     }
 
     public async Task<IActionResult> Chat(Chat chat)
@@ -52,7 +68,6 @@ public class ChatController : Controller
         var user = getUser();
         if (user == null)
             return RedirectToAction("Login", "Account");
-        ViewBag.Chats = await GetAllChats(user.Id);
         ViewBag.Chat = chat;
         ViewBag.User = user;
         return View();
@@ -64,7 +79,7 @@ public class ChatController : Controller
         if (user == null)
             return RedirectToAction("Login", "Account");
         ViewBag.User = user;
-        ViewBag.Chats = await GetAllChats(user.Id);
+        ViewBag.Chats = await GetAllChats();
         return View();
     }
 
@@ -79,9 +94,7 @@ public class ChatController : Controller
 
     private int getUserId()
     {
-        if (!HttpContext.Request.Cookies.ContainsKey("id"))
-            return 0;
-        int id = Convert.ToInt32(HttpContext.Request.Cookies["id"]);
+        int id = Convert.ToInt32(HttpContext.User.FindFirst("Id")?.Value);
         return id;
     }
 }

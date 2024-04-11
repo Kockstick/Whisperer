@@ -11,13 +11,14 @@
     </div>
 
     <div id="input-row">
-        <input id="message-input" class="default-elem" autofocus placeholder="Type something..." />
+        <input id="message-input" class="default-elem" autofocus placeholder="Type something..." autocomplete="off" />
         <button id="send-btn" class="default-elem"><span class="material-symbols-sharp">send</span></button>
     </div>
 </div>
 
+<partial name="~/Views/partials/message_template.cshtml" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
-<script src="~/js/chat.js" asp-append-version="true"></script>
 
 <script>
     var SendBtn = document.getElementById("send-btn");

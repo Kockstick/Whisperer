@@ -7,14 +7,14 @@
 <div id="login-container">
     <form asp-controller="Account">
         <div class="first">
-            <input placeholder="Login" name="Login" />
-            <input placeholder="Password" name="Password" />
+            <input id="inputLogin" placeholder="Login" name="Login" />
+            <input id="inputPassword" placeholder="Password" name="Password" />
             <button class="fogot-pswd-btn primary">Fogot Password?</button>
         </div>
 
         <div class="second">
-            <button class="primary-btn" type="submit" method="post" asp-action="Login">Sing in</button>
-            <button class="secondary-btn primary" type="submit" method="get" asp-action="SingUp">Sing up</button>
+            <button class="button primary-btn" method="post" asp-action="Login">Sing in</button>
+            <button class="button secondary-btn primary" method="get" asp-action="SingUp">Sing up</button>
         </div>
     </form>
 </div>

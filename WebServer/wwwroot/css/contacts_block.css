@@ -1,0 +1,81 @@
+.contacts-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    justify-content: left;
+    align-content: flex-start;
+    width: 100%;
+    height: 100%;
+    min-width: 10rem;
+    grid-column: 1 / 3;
+    overflow-y: scroll;
+    gap: 1rem;
+    padding: 1rem;
+    border-top:  2px dashed var(--color-light);
+    border-bottom:  2px dashed var(--color-light);
+    box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0);
+    transition: all 0.5s ease;
+}
+
+.contacts-container:hover{
+    border-top:  2px dashed var(--color-dark-variant);
+    border-bottom:  2px dashed var(--color-dark-variant);
+}
+
+.contacts-container .contact{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% / 3 - 0.7rem);
+    aspect-ratio: 1/1;
+    background-color: var(--color-white);
+    border: 2px solid var(--color-light);
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: inset -3px -10px 20px -10px var(--color-info-dark);
+    
+    gap: 1rem;
+    transition: all 0.5s ease;
+}
+
+.contacts-container .contact:hover{
+    box-shadow: inset 0 -10px 40px -10px var(--color-info-dark)
+}
+
+.contacts-container .contact-selected{
+    border: 2px solid var(--color-primary);
+}
+
+.contacts-container .contact img{
+    width: 40%;
+    height: 40%;
+    border-radius: 100%;
+    background-color: #1B9C85;
+}
+
+.contacts-container .contact h3{
+    color: var(--color-dark);
+    font-size: large;
+}
+
+.contacts-container .no-contacts-message{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    justify-self: center;
+    align-content: center;
+    margin: auto;
+    border-radius: 15px;
+    opacity: 0;
+    padding: 2rem;
+    gap: 1rem;
+    transition: all 0.5s ease;
+}
+
+.contacts-container:hover .no-contacts-message{
+    opacity: 1;
+}

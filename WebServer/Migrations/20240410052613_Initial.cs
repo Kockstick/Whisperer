@@ -7,13 +7,13 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace WebServer.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Chat",
+                name: "Chats",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -22,7 +22,7 @@ namespace WebServer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Chat", x => x.Id);
+                    table.PrimaryKey("PK_Chats", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -40,24 +40,44 @@ namespace WebServer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Login = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    CurrentChatId = table.Column<int>(type: "integer", nullable: true)
+                    Name = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Contacts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    ContactUserId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contacts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_User_Chat_CurrentChatId",
-                        column: x => x.CurrentChatId,
-                        principalTable: "Chat",
-                        principalColumn: "Id");
+                        name: "FK_Contacts_Users_ContactUserId",
+                        column: x => x.ContactUserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Contacts_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -77,9 +97,9 @@ namespace WebServer.Migrations
                 {
                     table.PrimaryKey("PK_Messages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Messages_Chat_ChatId",
+                        name: "FK_Messages_Chats_ChatId",
                         column: x => x.ChatId,
-                        principalTable: "Chat",
+                        principalTable: "Chats",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -88,9 +108,9 @@ namespace WebServer.Migrations
                         principalTable: "Messages",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Messages_User_SenderId",
+                        name: "FK_Messages_Users_SenderId",
                         column: x => x.SenderId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -109,9 +129,9 @@ namespace WebServer.Migrations
                 {
                     table.PrimaryKey("PK_UsersChats", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UsersChats_Chat_ChatId",
+                        name: "FK_UsersChats_Chats_ChatId",
                         column: x => x.ChatId,
-                        principalTable: "Chat",
+                        principalTable: "Chats",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -121,12 +141,22 @@ namespace WebServer.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UsersChats_User_UserId",
+                        name: "FK_UsersChats_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contacts_ContactUserId",
+                table: "Contacts",
+                column: "ContactUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contacts_UserId",
+                table: "Contacts",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Messages_ChatId",
@@ -142,11 +172,6 @@ namespace WebServer.Migrations
                 name: "IX_Messages_SenderId",
                 table: "Messages",
                 column: "SenderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_User_CurrentChatId",
-                table: "User",
-                column: "CurrentChatId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UsersChats_ChatId",
@@ -168,19 +193,22 @@ namespace WebServer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Contacts");
+
+            migrationBuilder.DropTable(
                 name: "Messages");
 
             migrationBuilder.DropTable(
                 name: "UsersChats");
 
             migrationBuilder.DropTable(
+                name: "Chats");
+
+            migrationBuilder.DropTable(
                 name: "Roots");
 
             migrationBuilder.DropTable(
-                name: "User");
-
-            migrationBuilder.DropTable(
-                name: "Chat");
+                name: "Users");
         }
     }
 }

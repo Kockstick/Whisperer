@@ -50,24 +50,6 @@ aside {
     width: 100%;
 }
 
-aside .toggle {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 1.4rem;
-    height: 3vh;
-}
-
-aside .toggle .logo {
-    display: flex;
-    gap: 0.5rem;
-}
-
-aside .toggle .close {
-    padding-right: 1rem;
-    display: none;
-}
-
 aside .sidebar {
     display: flex;
     flex-direction: column;
@@ -102,12 +84,6 @@ aside .sidebar form span {
     transition: all 0.3s ease;
 }
 
-aside .sidebar form:last-child {
-    position: absolute;
-    bottom: 2rem;
-    width: 100%;
-}
-
 aside .sidebar form.active {
     width: 100%;
     color: var(--color-primary);
@@ -117,6 +93,7 @@ aside .sidebar form.active {
 
 aside form.active button {
     color: var(--color-primary);
+    transition: all 0.3s ease;
 }
 
 aside .sidebar form.active::before {
@@ -124,12 +101,19 @@ aside .sidebar form.active::before {
     width: 6px;
     height: 18px;
     background-color: var(--color-primary);
+    transition: all 0.3s ease;
 }
 
 aside .sidebar form:not(.active):hover {
     margin-left: 1.6rem;
+    transition: all 0.3s ease;
 }
 
-aside .sidebar form:not(.active) button:hover {
+aside .sidebar form:not(.active) button h3 {
+    color: var(--color-dark);
+    transition: all 0.3s ease;
+}
+
+aside .sidebar form:not(.active) button:hover h3 {
     color: var(--color-primary);
 }

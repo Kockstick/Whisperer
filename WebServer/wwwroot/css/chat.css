@@ -35,18 +35,6 @@ p {
     color: var(--color-dark);
 }
 
-.main-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    height: 100vh;
-    background-color: var(--color-background);
-    padding: 0 0.5rem;
-    gap: 0.8rem;
-    opacity: 0;
-    transition: all 0.5s ease;
-}
-
 .chatroom {
     display: flex;
     flex-direction: column;
@@ -68,13 +56,8 @@ p {
     transition: all 0.3s ease;
 }
 
-.chat-enabled {
-    opacity: 1;
-}
-
 #input-row {
     display: flex;
-    width: 40vw;
     margin-bottom: 1.5rem;
     gap: 0.8rem;
     z-index: 1;
