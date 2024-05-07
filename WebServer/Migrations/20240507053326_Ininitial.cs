@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace WebServer.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Ininitial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,25 +18,13 @@ namespace WebServer.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false)
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    Image = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Chats", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Roots",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    RootLvl = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Roots", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,7 +78,7 @@ namespace WebServer.Migrations
                     SenderId = table.Column<int>(type: "integer", nullable: false),
                     Date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Text = table.Column<string>(type: "text", nullable: true),
-                    File = table.Column<byte[]>(type: "bytea", nullable: true),
+                    File = table.Column<string>(type: "text", nullable: true),
                     ReplyMessageId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
@@ -123,7 +111,7 @@ namespace WebServer.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ChatId = table.Column<int>(type: "integer", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false),
-                    RootId = table.Column<int>(type: "integer", nullable: false)
+                    Root = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -132,12 +120,6 @@ namespace WebServer.Migrations
                         name: "FK_UsersChats_Chats_ChatId",
                         column: x => x.ChatId,
                         principalTable: "Chats",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UsersChats_Roots_RootId",
-                        column: x => x.RootId,
-                        principalTable: "Roots",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -179,11 +161,6 @@ namespace WebServer.Migrations
                 column: "ChatId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UsersChats_RootId",
-                table: "UsersChats",
-                column: "RootId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_UsersChats_UserId",
                 table: "UsersChats",
                 column: "UserId");
@@ -203,9 +180,6 @@ namespace WebServer.Migrations
 
             migrationBuilder.DropTable(
                 name: "Chats");
-
-            migrationBuilder.DropTable(
-                name: "Roots");
 
             migrationBuilder.DropTable(
                 name: "Users");

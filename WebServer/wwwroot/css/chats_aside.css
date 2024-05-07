@@ -30,3 +30,21 @@
     --color-light: rgba(0, 0, 0, 0.4);
     --box-shadow: 0 2rem 3rem var(--color-light);
 }
+
+aside .sidebar form:hover span {
+    color: var(--color-primary);
+    transition: all 0.3s ease;
+}
+
+#expand-chat-btn{
+    color: transparent;
+    cursor: pointer;
+    margin: 1rem;
+    margin-right: 1.6rem;
+    padding: 0;
+    width: auto;
+}
+
+#expand-chat-btn span:hover{
+    color: var(--color-success);
+}

@@ -48,10 +48,17 @@
 .inputs-container{
     display: flex;
     flex-direction: column;
+    justify-content: start;
     width: 100%;
     aspect-ratio: 1/1;
     min-width: 10rem;
     gap: 1rem;
+}
+
+.inputs-container h2{
+    color: var(--color-dark-variant);
+    margin: auto 0 0 0;
+    align-self: flex-end;
 }
 
 .create_chat_container .no-image-span{
@@ -77,6 +84,10 @@
 
 .create_chat_container .load-photo-container:hover{
     box-shadow: 0 0 1px 2px var(--color-primary);
+}
+
+.load-photo-container .image-preview{
+    object-fit: cover;
 }
 
 .create_chat_container input{

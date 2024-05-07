@@ -12,7 +12,14 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
-<body class="dark-mode-variables"> <!--class="dark-mode-variables"!-->
+<body> <!--class="dark-mode-variables"!-->
+    <script>
+        let theme = localStorage.getItem('theme');
+        if (theme === "dark") {
+            document.body.classList.add("dark-mode-variables");
+        }
+    </script>
+
     <div class="container">
         <partial name="~/Views/partials/menu_aside.cshtml" />
         <main role="main" class="pb-3">
@@ -25,6 +32,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/aside.js" asp-append-version="true"></script>
+
     <script src="~/js/main-container_enable.js" asp-append-version="true"></script>
     <script>
 

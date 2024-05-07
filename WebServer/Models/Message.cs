@@ -13,7 +13,7 @@ namespace WebServer.Models
         public int SenderId { get; set; }
         public DateTime Date { get; set; }
         public string? Text { get; set; }
-        public byte[]? File { get; set; }
+        public string? File { get; set; }
         public int? ReplyMessageId { get; set; }
 
         public Chat Chat { get; set; }

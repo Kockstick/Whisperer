@@ -1,0 +1,50 @@
+@{
+    ViewData["Title"] = ViewBag.Chat?.Name;
+}
+
+<link rel="stylesheet" href="~/css/create_chat.css" asp-append-version="true" />
+
+<div class="main-container">
+    <div class="default-elem create_chat_container">
+        <partial name="~/Views/partials/chat_settings.cshtml" />
+        <partial name="~/Views/partials/chat_users_block.cshtml" />
+        <span class="ok-button material-symbols-sharp">
+            check
+        </span>
+    </div>
+</div>
+
+<script>
+    let chatName = document.querySelector(".inputs-container .chat-name");
+    let chatDescription = document.querySelector(".inputs-container .chat-description");
+    let inputImage = document.querySelector(".load-photo-container .input-file");
+    let imagePreview = document.querySelector(".load-photo-container .image-preview");
+    let okBtn = document.querySelector(".ok-button");
+
+    loadChat();
+    checkValid(chatName.value);
+
+    function loadChat() {
+        chatName.value = "@ViewBag.Chat.Name";
+        chatDescription.value = "@ViewBag.Chat.Description";
+        inputImage.files[0] = "@ViewBag.Chat.Image";
+        imagePreview.src = "@ViewBag.Chat.Image";
+        if ("@ViewBag.Chat.Image" != "")
+            imagePreview.style.opacity = 1;
+    }
+
+    chatName.addEventListener("input", event => {
+        checkValid(event.target.value);
+    });
+
+    function checkValid(text) {
+        if (text.length > 0) {
+            if (!okBtn.classList.contains('ok-btn-enabled'))
+                okBtn.classList.add("ok-btn-enabled");
+        }
+        else {
+            if (okBtn.classList.contains('ok-btn-enabled'))
+                okBtn.classList.remove("ok-btn-enabled");
+        }
+    }
+</script>

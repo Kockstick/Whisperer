@@ -11,24 +11,90 @@
     </div>
 
     <div id="input-row">
-        <input id="message-input" class="default-elem" autofocus placeholder="Type something..." autocomplete="off" />
-        <button id="send-btn" class="default-elem"><span class="material-symbols-sharp">send</span></button>
+        <span class="btn material-symbols-sharp">attach_file</span>
+        <input id="clip-input" class="default-elem" type="file" multiple accept="image/*"
+            style="position: absolute; opacity: 0;">
+        <div class=" message-input-container default-elem">
+            <!--div class="enable images-container">
+            </div/!-->
+            <img id="message-image">
+            <input id="message-input" autofocus placeholder="Type something..." autocomplete="off" />
+        </div>
+        <button id="send-btn" class="btn default-elem"><span class="material-symbols-sharp">send</span></button>
     </div>
 </div>
 
 <partial name="~/Views/partials/message_template.cshtml" />
 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+
+<script>
+    let span = document.querySelector("#input-row .btn");
+    let input = document.getElementById("clip-input");
+    let image = document.querySelector("#message-image");
+    //let imagesContainer = document.querySelector(".images-container");
+
+    let inputRow = document.querySelector("#input-row");
+
+    resize();
+
+    window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        var resizeTimer = setTimeout(function () {
+            resize();
+        }, 250);
+    });
+
+    span.addEventListener('mouseenter', function () {
+        resize();
+    });
+
+    inputRow.addEventListener('mouseenter', function () {
+        resize();
+    });
+
+    input.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                image.src = e.target.result;
+                image.classList.add("enable");
+
+                resize();
+                //image.style.opacity = 1;
+                //span.style.opacity = 0;
+            };
+            reader.readAsDataURL(file);
+        }
+        else {
+            image.src = "";
+            image.classList.remove("enable");
+            resize();
+        }
+    });
+
+    function resize() {
+        var sourceElementWidth = span.offsetWidth;
+        var sourceElementHeight = span.offsetHeight;
+        input.style.width = sourceElementWidth + 'px';
+        input.style.height = sourceElementHeight + 'px';
+    }
+</script>
 
 <script>
     var SendBtn = document.getElementById("send-btn");
     var MessageInput = document.getElementById("message-input");
+    var MessageImage = document.getElementById("message-image");
+    var ClipInput = document.getElementById("clip-input");
     var ChatRoom = document.querySelector(".chatroom");
     var ScrollCont = document.querySelector(".chatroom-container");
 
     var hubConnection = new signalR.HubConnectionBuilder()
         .withUrl("/Chat")
         .build();
+    //hubConnection.start();
 
     MessageInput.addEventListener('keydown', function (e) {
         if (e.keyCode === 13) {
@@ -56,12 +122,17 @@
         return matches ? decodeURIComponent(matches[1]) : undefined;
     }
 
-    function printMessage(message, classes) {
+    async function printMessage(message, classes) {
         var template = document.getElementById("message-template");
         var mesElem = template.content.cloneNode(true);
 
         var paragraph = mesElem.querySelector("p");
         paragraph.appendChild(document.createTextNode(message.text));
+
+        var image = mesElem.querySelector("img");
+        image.src = message.file;
+        if (message.file == null)
+            image.classList.add('hidden');
 
         var date = mesElem.getElementById("date-message");
         var messageDate = new Date(message.date);
@@ -80,24 +151,69 @@
         ScrollCont.scrollTop = 9999;
     }
 
-    function sendMessage() {
+    async function sendMessage() {
         var text = MessageInput.value;
-        if (text == "")
+        var image = ClipInput.files[0];
+
+        if (text == "" && image == null)
             return;
 
-        var message = {
-            ChatId: @ViewBag.Chat?.Id,
-            SenderId: @ViewBag.User.Id,
-            text: text,
-            sender: null,
-            date: new Date()
-        };
+        if (image) {
+            var path = await uploadImage(image);
 
-        hubConnection.invoke("Send", message);
+            if (path != null) {
+                var message = {
+                    ChatId: @ViewBag.Chat?.Id,
+                    SenderId: @ViewBag.User.Id,
+                    text: text,
+                    file: path,
+                    sender: null,
+                    date: new Date()
+                };
+                hubConnection.invoke("Send", message);
+            }
+        }
+        else {
+            var message = {
+                ChatId: @ViewBag.Chat?.Id,
+                SenderId: @ViewBag.User.Id,
+                text: text,
+                sender: null,
+                date: new Date()
+            };
+            hubConnection.invoke("Send", message);
+        }
 
         //printMessage(message, "my-message");
 
         MessageInput.value = "";
+        ClipInput.value = null;
+        MessageImage.src = "";
+        MessageImage.classList.remove("enable");
+    }
+
+    async function uploadImage(image) {
+        try {
+            var formData = new FormData();
+            formData.append('file', image);
+
+            const response = await fetch('/Chat/UploadMessageImage/', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('Ошибка загрузки изображения');
+            }
+
+            const data = await response.json();
+            console.log('Ссылка на изображение:', data.imageUrl);
+            return data.imageUrl;
+        }
+        catch (error) {
+            console.error('Произошла ошибка:', error);
+            return "";
+        }
     }
 
     function getNiceDate(fullDate) {

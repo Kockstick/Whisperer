@@ -1,0 +1,55 @@
+<div class="load-photo-container">
+    <span class="material-symbols-sharp no-image-span">
+        add_photo_alternate
+    </span>
+    <img class="image-preview" style="position: absolute; opacity: 0; border-radius: 15px;">
+    <input class="input-file" type="file" multiple accept="image/*"
+        style="position: absolute; aspect-ratio: 1/1; opacity: 0;">
+</div>
+
+<div class="inputs-container">
+    <input class="chat-name" placeholder="Chat name">
+    <textarea class="chat-description" placeholder="Description"></textarea>
+    <h2>contacts</h2>
+</div>
+
+<script>
+    let span = document.querySelector(".no-image-span");
+    let input = document.querySelector(".input-file");
+    let image = document.querySelector(".image-preview");
+
+    resize();
+
+    window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        var resizeTimer = setTimeout(function () {
+            resize();
+        }, 250);
+    });
+
+    input.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                image.src = e.target.result;
+                image.style.opacity = 1;
+                span.style.opacity = 0;
+            };
+            reader.readAsDataURL(file);
+        }
+        else {
+            image.style.opacity = 0;
+            span.style.opacity = 1;
+        }
+    });
+
+    function resize() {
+        var sourceElementWidth = span.offsetWidth;
+        var sourceElementHeight = span.offsetHeight;
+        input.style.width = sourceElementWidth + 'px';
+        input.style.height = sourceElementHeight + 'px';
+        image.style.width = sourceElementWidth + 'px';
+        image.style.height = sourceElementHeight + 'px';
+    }
+</script>

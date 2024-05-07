@@ -32,6 +32,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Chat/Expand.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxFeHBhbmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Chat/Main.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxNYWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -56,12 +60,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NccGFydGlhbHNcY2hhdHNfYXNpZGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/partials/chat_settings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NccGFydGlhbHNcY2hhdF9zZXR0aW5ncy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/partials/chat_users_block.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NccGFydGlhbHNcY2hhdF91c2Vyc19ibG9jay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/partials/contacts_block.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NccGFydGlhbHNcY29udGFjdHNfYmxvY2suY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/partials/contact_template.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NccGFydGlhbHNcY29udGFjdF90ZW1wbGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/partials/menu_aside.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NccGFydGlhbHNcbWVudV9hc2lkZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/partials/message-img-template.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NccGFydGlhbHNcbWVzc2FnZS1pbWctdGVtcGxhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/partials/message_template.cshtml]
@@ -74,6 +94,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/User/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [F:/Kostya/Study/Kursach/Whisperer/WebServer/Views/_ViewImports.cshtml]

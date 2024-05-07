@@ -5,7 +5,6 @@ namespace WebServer.Data;
 
 public class ServerDbContext : DbContext
 {
-    public DbSet<Root> Roots { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Chat> Chats { get; set; }
     public DbSet<Message> Messages { get; set; }

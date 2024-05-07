@@ -6,19 +6,7 @@
 
 <div class="main-container">
     <div class="default-elem create_chat_container">
-        <div class="load-photo-container">
-            <span class="material-symbols-sharp no-image-span">
-                add_photo_alternate
-            </span>
-            <img class="image-preview" style="position: absolute; opacity: 0; border-radius: 15px;">
-            <input class="input-file" type="file" multiple accept="image/*"
-                style="position: absolute; aspect-ratio: 1/1; opacity: 0;">
-        </div>
-
-        <div class="inputs-container">
-            <input class="chat-name" placeholder="Chat name">
-            <textarea placeholder="Description"></textarea>
-        </div>
+        <partial name="~/Views/partials/chat_settings.cshtml" />
 
         <partial name="~/Views/partials/contacts_block.cshtml" />
 
@@ -29,44 +17,9 @@
 </div>
 
 <script>
-    let span = document.querySelector(".no-image-span");
-    let input = document.querySelector(".input-file");
-    let image = document.querySelector(".image-preview");
-
-    resize();
-
-    window.addEventListener('resize', function () {
-        clearTimeout(resizeTimer);
-        var resizeTimer = setTimeout(function () {
-            resize();
-        }, 250);
-    });
-
-    input.addEventListener('change', function (event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                image.src = e.target.result;
-                image.style.opacity = 1;
-                span.style.opacity = 0;
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-
-    function resize() {
-        var sourceElementWidth = span.offsetWidth;
-        var sourceElementHeight = span.offsetHeight;
-        input.style.width = sourceElementWidth + 'px';
-        input.style.height = sourceElementHeight + 'px';
-        image.style.width = sourceElementWidth + 'px';
-        image.style.height = sourceElementHeight + 'px';
-    }
-</script>
-
-<script>
     let inputField = document.querySelector(".inputs-container .chat-name");
+    let inputDescription = document.querySelector(".inputs-container .chat-description");
+    let inputImage = document.querySelector(".load-photo-container .input-file");
     let okBtn = document.querySelector(".ok-button");
 
     inputField.addEventListener("input", event => {
@@ -81,13 +34,24 @@
     });
 
     okBtn.addEventListener("click", e => {
+        createChat();
+    });
+
+    async function createChat() {
         let contacts = document.querySelectorAll(".contact-selected");
         let idList = Array.from(contacts).map(contact => {
             return contact.querySelector(".contact-id").value;
         });
 
+        var image = inputImage.files[0];
+        var path = "";
+        if (image)
+            path = await uploadImage(image);
+
         var createModel = {
             Name: inputField.value,
+            Description: inputDescription.value,
+            Image: path,
             UsersId: idList,
         }
 
@@ -102,5 +66,29 @@
             if (response.redirected)
                 window.location.href = response.url;
         });
-    });
+    }
+
+    async function uploadImage(image) {
+        try {
+            var formData = new FormData();
+            formData.append('file', image);
+
+            const response = await fetch('/Chat/UploadChatImage/', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('Ошибка загрузки изображения');
+            }
+
+            const data = await response.json();
+            console.log('Ссылка на изображение:', data.imageUrl);
+            return data.imageUrl;
+        }
+        catch (error) {
+            console.error('Произошла ошибка:', error);
+            return "";
+        }
+    }
 </script>

@@ -2,8 +2,38 @@
     ViewData["Title"] = "Settings";
 }
 
-<link rel="stylesheet" href="~/css/create_chat.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/settings.css" asp-append-version="true" />
 
 <div class="main-container">
-    <h1>Settings page</h1>
+    <div>
+        <button id="changeThemeBtn" class="button">
+            <h2>Light</h2>
+        </button>
+    </div>
 </div>
+
+<script>
+    let toggleThemeButton = document.getElementById("changeThemeBtn");
+    let _body = document.querySelector("body");
+
+    let _darkThemeClass = "dark-mode-variables";
+
+    toggleThemeButton.addEventListener('click', function () {
+        toggleTheme();
+    });
+
+    function saveTheme(theme) {
+        localStorage.setItem('theme', theme);
+    }
+
+    function toggleTheme() {
+        if (_body.classList.contains(_darkThemeClass)) {
+            _body.classList.remove(_darkThemeClass)
+            saveTheme("light");
+        }
+        else {
+            _body.classList.add(_darkThemeClass)
+            saveTheme("dark");
+        }
+    }
+</script>

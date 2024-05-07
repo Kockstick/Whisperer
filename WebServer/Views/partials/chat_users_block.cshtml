@@ -1,0 +1,71 @@
+<link rel="stylesheet" href="~/css/contacts_block.css" asp-append-version="true" />
+
+<div class="contacts-container">
+    <div class="no-contacts-message">
+        <h3>No users in chat</h3>
+        <form asp-controller="Home" asp-action="Search" method="get">
+            <button type="submit" class="button primary-btn">Search</button>
+        </form>
+    </div>
+</div>
+
+<partial name="~/Views/partials/contact_template.cshtml" />
+
+<script>
+    let contactTemplate = document.getElementById("contact-template");
+    let contactsContainer = document.querySelector(".contacts-container");
+    let noContactsMessage = document.querySelector(".no-contacts-message");
+
+    GetAllContacts(@ViewBag.Chat.Id).then(contacts => {
+        if (contacts.length > 0)
+            noContactsMessage.style.display = "none";
+
+        contacts.forEach(user => {
+            let contactItem = contactTemplate.content.cloneNode(true);
+
+            let divContact = contactItem.querySelector(".contact");
+            divContact.addEventListener('click', onContactClick);
+
+            let idContact = contactItem.querySelector(".contact-id");
+            idContact.value = user.id;
+            let nameContact = contactItem.querySelector(".contact-name");
+            nameContact.innerText = user.name;
+
+            contactsContainer.appendChild(contactItem);
+        });
+    });
+
+    function onContactClick(event) {
+        var contactDiv = event.target.closest('.contact');
+
+        if (contactDiv.classList.contains('contact-selected'))
+            contactDiv.classList.remove("contact-selected");
+        else
+            contactDiv.classList.add("contact-selected");
+
+        sendRequest('/Home/AddContact', 'POST', user);
+    }
+
+    async function GetAllContacts(chatId) {
+        try {
+            let response = await fetch('/Chat/GetUsers?', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(chatId)
+            });
+
+            if (!response.ok) {
+                console.log("Error query");
+            }
+
+            let data = await response.json();
+            return data;
+        }
+        catch (error) {
+            console.error('Ошибка:', error);
+            return [];
+        }
+    }
+</script>

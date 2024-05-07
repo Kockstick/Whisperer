@@ -30,6 +30,14 @@ namespace WebServer.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -76,8 +84,8 @@ namespace WebServer.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<byte[]>("File")
-                        .HasColumnType("bytea");
+                    b.Property<string>("File")
+                        .HasColumnType("text");
 
                     b.Property<int?>("ReplyMessageId")
                         .HasColumnType("integer");
@@ -97,26 +105,6 @@ namespace WebServer.Migrations
                     b.HasIndex("SenderId");
 
                     b.ToTable("Messages");
-                });
-
-            modelBuilder.Entity("WebServer.Models.Root", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("RootLvl")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Roots");
                 });
 
             modelBuilder.Entity("WebServer.Models.User", b =>
@@ -155,7 +143,7 @@ namespace WebServer.Migrations
                     b.Property<int>("ChatId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("RootId")
+                    b.Property<int>("Root")
                         .HasColumnType("integer");
 
                     b.Property<int>("UserId")
@@ -164,8 +152,6 @@ namespace WebServer.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ChatId");
-
-                    b.HasIndex("RootId");
 
                     b.HasIndex("UserId");
 
@@ -224,12 +210,6 @@ namespace WebServer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebServer.Models.Root", "Root")
-                        .WithMany()
-                        .HasForeignKey("RootId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("WebServer.Models.User", "User")
                         .WithMany("UsersChats")
                         .HasForeignKey("UserId")
@@ -237,8 +217,6 @@ namespace WebServer.Migrations
                         .IsRequired();
 
                     b.Navigation("Chat");
-
-                    b.Navigation("Root");
 
                     b.Navigation("User");
                 });

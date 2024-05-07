@@ -2,16 +2,22 @@
 
 <aside>
     <div class="sidebar chats_sidebar">
+        <h2>Your chats</h2>
     </div>
 </aside>
 
 <template id="chat-item_template">
-    <form class="" asp-controller="Chat" asp-action="Chat">
+    <form class="">
         <input name="User" class="visually-hidden" value="@ViewBag.User" />
         <input name="Id" class="visually-hidden" value="" />
         <input name="Name" class="visually-hidden" value="" />
-        <button type="submit">
+        <button asp-controller="Chat" asp-action="Chat" type="submit">
             <h3></h3>
+        </button>
+        <button id="expand-chat-btn" asp-controller="Chat" asp-action="Expand">
+            <span type="submit" class="material-symbols-sharp">
+                bottom_panel_open
+            </span>
         </button>
     </form>
 </template>

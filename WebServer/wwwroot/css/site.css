@@ -57,6 +57,7 @@ body {
   overflow: hidden;
   color: var(--color-dark);
   background-color: var(--color-background);
+  transition: all 1s ease;
 }
 
 main {

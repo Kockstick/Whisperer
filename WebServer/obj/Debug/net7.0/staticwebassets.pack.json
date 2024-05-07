@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\WebServer.bundle.scp.css"
     },
     {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\chatimg\\2ead4709af5fe0df11e85681a3bab1ae6ce576ea01047b3f512dab85b38a330c.jpg",
+      "PackagePath": "staticwebassets\\chatimg\\2ead4709af5fe0df11e85681a3bab1ae6ce576ea01047b3f512dab85b38a330c.jpg"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\chatimg\\f575b9009057b5f4d29f21d4073caa754143a0200fbc28a7d494269f1e4889a7.png",
+      "PackagePath": "staticwebassets\\chatimg\\f575b9009057b5f4d29f21d4073caa754143a0200fbc28a7d494269f1e4889a7.png"
+    },
+    {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\account.css",
       "PackagePath": "staticwebassets\\css\\account.css"
     },
@@ -37,8 +45,16 @@
       "PackagePath": "staticwebassets\\css\\message.css"
     },
     {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\profile.css",
+      "PackagePath": "staticwebassets\\css\\profile.css"
+    },
+    {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\search.css",
       "PackagePath": "staticwebassets\\css\\search.css"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\settings.css",
+      "PackagePath": "staticwebassets\\css\\settings.css"
     },
     {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\site.css",
@@ -287,6 +303,54 @@
     {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\000bea46b938bdca26ab9d9170b825d2159f4a62e8d503fd23d76f588f28ea1c.png",
+      "PackagePath": "staticwebassets\\messageimg\\000bea46b938bdca26ab9d9170b825d2159f4a62e8d503fd23d76f588f28ea1c.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\2ead4709af5fe0df11e85681a3bab1ae6ce576ea01047b3f512dab85b38a330c.jpg",
+      "PackagePath": "staticwebassets\\messageimg\\2ead4709af5fe0df11e85681a3bab1ae6ce576ea01047b3f512dab85b38a330c.jpg"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\4a29aacc7e95c658b693f87ca3743b820f83b960a2c0d6d143c6b3dfbf432861.png",
+      "PackagePath": "staticwebassets\\messageimg\\4a29aacc7e95c658b693f87ca3743b820f83b960a2c0d6d143c6b3dfbf432861.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\4a3d0cf1b7dd9990cd5240051b5743d5a92bd95c0943639c97c56844cb06d44e.png",
+      "PackagePath": "staticwebassets\\messageimg\\4a3d0cf1b7dd9990cd5240051b5743d5a92bd95c0943639c97c56844cb06d44e.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\4ee9bc4c65ae93f7571c01574201a23886c3e67f8f1016c9b589db76728ac282.png",
+      "PackagePath": "staticwebassets\\messageimg\\4ee9bc4c65ae93f7571c01574201a23886c3e67f8f1016c9b589db76728ac282.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\7629ce478b44123c12dac216d677706ef4f2fd0b5397cc78348ebd00d8775bf7.jpg",
+      "PackagePath": "staticwebassets\\messageimg\\7629ce478b44123c12dac216d677706ef4f2fd0b5397cc78348ebd00d8775bf7.jpg"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\a610c07a6980aa600fb24484acfa4a28e16985f8fc3c80f79f970e88957229f8.png",
+      "PackagePath": "staticwebassets\\messageimg\\a610c07a6980aa600fb24484acfa4a28e16985f8fc3c80f79f970e88957229f8.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\d049c8a597763910e00a5f53b72b2581b52e49e922579d12e7a40268b1ccfb15.png",
+      "PackagePath": "staticwebassets\\messageimg\\d049c8a597763910e00a5f53b72b2581b52e49e922579d12e7a40268b1ccfb15.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\d14c63a87744e404eda19bf523fa0769b2d18024938fe33607799f36f1b9a76b.png",
+      "PackagePath": "staticwebassets\\messageimg\\d14c63a87744e404eda19bf523fa0769b2d18024938fe33607799f36f1b9a76b.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\eaa782b86a8c1662c17969b8e97eaf61e0f577303fc35df74b1dece7dae7f358.png",
+      "PackagePath": "staticwebassets\\messageimg\\eaa782b86a8c1662c17969b8e97eaf61e0f577303fc35df74b1dece7dae7f358.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\f2fe1e1054faec0f23191af1678ca2719eda5fda4f75b274bc8c1be7222c6ae9.jpg",
+      "PackagePath": "staticwebassets\\messageimg\\f2fe1e1054faec0f23191af1678ca2719eda5fda4f75b274bc8c1be7222c6ae9.jpg"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\f575b9009057b5f4d29f21d4073caa754143a0200fbc28a7d494269f1e4889a7.png",
+      "PackagePath": "staticwebassets\\messageimg\\f575b9009057b5f4d29f21d4073caa754143a0200fbc28a7d494269f1e4889a7.png"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.WebServer.Microsoft.AspNetCore.StaticWebAssets.props",

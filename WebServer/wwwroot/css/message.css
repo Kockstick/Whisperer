@@ -31,12 +31,9 @@
     --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
-p {
+p, small{
     color: var(--color-dark);
-}
-
-small {
-    color: var(--color-dark);
+    margin: 0;
 }
 
 .message {
@@ -57,6 +54,12 @@ small {
 .message p,
 .message small {
     overflow-wrap: break-word;
+}
+
+.message img{
+    width: 100%;
+    border-radius: 5px;
+    margin: 0.3rem 0;
 }
 
 .my-message {
@@ -84,4 +87,8 @@ small {
 
 .other-message #name-message {
     color: var(--color-primary);
+}
+
+.message .hidden {
+    display: none;
 }
