@@ -7,13 +7,13 @@
 <div id="login-container">
     <form asp-controller="Account">
         <div class="first">
-            <input required placeholder="Name" name="Name" />
-            <input required placeholder="Login" name="Login" />
-            <input required placeholder="Password" name="Password" />
+            <input required placeholder="Имя" name="Name" />
+            <input required placeholder="Логин" type="email" name="Login" />
+            <input required placeholder="Пароль" type="password" name="Password" />
         </div>
 
         <div class="second">
-            <button class="button primary-btn" type="submit" method="post" asp-action="SingUp">Sing up</button>
+            <button class="button primary-btn" type="submit" method="post" asp-action="SingUp">Создать</button>
         </div>
     </form>
 </div>

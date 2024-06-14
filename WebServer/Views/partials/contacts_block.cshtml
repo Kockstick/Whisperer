@@ -2,9 +2,9 @@
 
 <div class="contacts-container">
     <div class="no-contacts-message">
-        <h3>You don't have any contacts</h3>
+        <h3>У вас нет контактов</h3>
         <form asp-controller="Home" asp-action="Search" method="get">
-            <button type="submit" class="button primary-btn">Search</button>
+            <button type="submit" class="button primary-btn">Найти</button>
         </form>
     </div>
 </div>
@@ -31,6 +31,8 @@
             let nameContact = contactItem.querySelector(".contact-name");
             nameContact.innerText = user.name;
 
+            divContact.classList.add("contact-selected");
+
             contactsContainer.appendChild(contactItem);
         });
     });
@@ -38,16 +40,36 @@
     function onContactClick(event) {
         var contactDiv = event.target.closest('.contact');
 
-        if (contactDiv.classList.contains('contact-selected'))
-            contactDiv.classList.remove("contact-selected");
-        else
-            contactDiv.classList.add("contact-selected");
-
-        sendRequest('/Home/AddContact', 'POST', user);
+        try {
+            onClickContact(contactDiv);
+        } catch {
+        }
     }
 
     async function GetAllContacts() {
         let response = await fetch('/Home/GetContacts/');
         return response.json();
+    }
+
+    function sendRequest(url, method, data) {
+        console.log("send query");
+        return fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(response => {
+            console.log("get respponce");
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        }).then(data => {
+            console.log('Server response:', data);
+            // Добавьте здесь логику обработки успешного ответа сервера, если необходимо
+        }).catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+        });
     }
 </script>

@@ -36,3 +36,16 @@ aside .menu_sidebar form:last-child {
     bottom: 2rem;
     width: 100%;
 }
+
+aside .menu_sidebar form button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+aside .menu_sidebar form button h3{
+    width: min-content;
+    margin: 0;
+}

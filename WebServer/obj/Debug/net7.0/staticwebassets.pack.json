@@ -9,6 +9,30 @@
       "PackagePath": "staticwebassets\\chatimg\\2ead4709af5fe0df11e85681a3bab1ae6ce576ea01047b3f512dab85b38a330c.jpg"
     },
     {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\chatimg\\4d2d0a0df4d69f6d848c77a839bcdf1d9bf790ab7d5ad2ab60578e85ec82b73c.jpg",
+      "PackagePath": "staticwebassets\\chatimg\\4d2d0a0df4d69f6d848c77a839bcdf1d9bf790ab7d5ad2ab60578e85ec82b73c.jpg"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\chatimg\\9a1399da62ac4cbeb69a9897cc198e3144f273d614dd59ffcf861da826953491.jpg",
+      "PackagePath": "staticwebassets\\chatimg\\9a1399da62ac4cbeb69a9897cc198e3144f273d614dd59ffcf861da826953491.jpg"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\chatimg\\9dbf1f3cfe6c7258793d0133f69e6a201a704bbd6cf887d4374ded1f8b620ad2.png",
+      "PackagePath": "staticwebassets\\chatimg\\9dbf1f3cfe6c7258793d0133f69e6a201a704bbd6cf887d4374ded1f8b620ad2.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\chatimg\\a534e0bc62a4a4a49c9cf4db0b28cdc814d73c2895c4fb201798d81dcd63606b.png",
+      "PackagePath": "staticwebassets\\chatimg\\a534e0bc62a4a4a49c9cf4db0b28cdc814d73c2895c4fb201798d81dcd63606b.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\chatimg\\cf3176fc0828f4cbd1164bde560afe8cfef016eb4562d3878bbc7dca49722563.png",
+      "PackagePath": "staticwebassets\\chatimg\\cf3176fc0828f4cbd1164bde560afe8cfef016eb4562d3878bbc7dca49722563.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\chatimg\\d049c8a597763910e00a5f53b72b2581b52e49e922579d12e7a40268b1ccfb15.png",
+      "PackagePath": "staticwebassets\\chatimg\\d049c8a597763910e00a5f53b72b2581b52e49e922579d12e7a40268b1ccfb15.png"
+    },
+    {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\chatimg\\f575b9009057b5f4d29f21d4073caa754143a0200fbc28a7d494269f1e4889a7.png",
       "PackagePath": "staticwebassets\\chatimg\\f575b9009057b5f4d29f21d4073caa754143a0200fbc28a7d494269f1e4889a7.png"
     },
@@ -43,6 +67,10 @@
     {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\message.css",
       "PackagePath": "staticwebassets\\css\\message.css"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\popup-msg.css",
+      "PackagePath": "staticwebassets\\css\\popup-msg.css"
     },
     {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\css\\profile.css",
@@ -313,6 +341,10 @@
       "PackagePath": "staticwebassets\\messageimg\\2ead4709af5fe0df11e85681a3bab1ae6ce576ea01047b3f512dab85b38a330c.jpg"
     },
     {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\41bc4240fc448d910135a13a2dc46483e54c177c67ffa6aa0c6dc9851e6fbc3f.png",
+      "PackagePath": "staticwebassets\\messageimg\\41bc4240fc448d910135a13a2dc46483e54c177c67ffa6aa0c6dc9851e6fbc3f.png"
+    },
+    {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\4a29aacc7e95c658b693f87ca3743b820f83b960a2c0d6d143c6b3dfbf432861.png",
       "PackagePath": "staticwebassets\\messageimg\\4a29aacc7e95c658b693f87ca3743b820f83b960a2c0d6d143c6b3dfbf432861.png"
     },
@@ -321,12 +353,36 @@
       "PackagePath": "staticwebassets\\messageimg\\4a3d0cf1b7dd9990cd5240051b5743d5a92bd95c0943639c97c56844cb06d44e.png"
     },
     {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\4c6b2beaee11db68955d34b0213371549267666ccdd49b3a57509d21c9972ad3.png",
+      "PackagePath": "staticwebassets\\messageimg\\4c6b2beaee11db68955d34b0213371549267666ccdd49b3a57509d21c9972ad3.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\4d2d0a0df4d69f6d848c77a839bcdf1d9bf790ab7d5ad2ab60578e85ec82b73c.jpg",
+      "PackagePath": "staticwebassets\\messageimg\\4d2d0a0df4d69f6d848c77a839bcdf1d9bf790ab7d5ad2ab60578e85ec82b73c.jpg"
+    },
+    {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\4ee9bc4c65ae93f7571c01574201a23886c3e67f8f1016c9b589db76728ac282.png",
       "PackagePath": "staticwebassets\\messageimg\\4ee9bc4c65ae93f7571c01574201a23886c3e67f8f1016c9b589db76728ac282.png"
     },
     {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\7629ce478b44123c12dac216d677706ef4f2fd0b5397cc78348ebd00d8775bf7.jpg",
       "PackagePath": "staticwebassets\\messageimg\\7629ce478b44123c12dac216d677706ef4f2fd0b5397cc78348ebd00d8775bf7.jpg"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\7b1442985a141e7f6408d4e9b8006767ea12ad4e0f80bdaf065df8aa4becaa77.png",
+      "PackagePath": "staticwebassets\\messageimg\\7b1442985a141e7f6408d4e9b8006767ea12ad4e0f80bdaf065df8aa4becaa77.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\8d50cfeb549f6b8b650035e577eb432de7f7217dd4f2a20a6ed90fbae96f5f2a.jpg",
+      "PackagePath": "staticwebassets\\messageimg\\8d50cfeb549f6b8b650035e577eb432de7f7217dd4f2a20a6ed90fbae96f5f2a.jpg"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\9dbf1f3cfe6c7258793d0133f69e6a201a704bbd6cf887d4374ded1f8b620ad2.png",
+      "PackagePath": "staticwebassets\\messageimg\\9dbf1f3cfe6c7258793d0133f69e6a201a704bbd6cf887d4374ded1f8b620ad2.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\a534e0bc62a4a4a49c9cf4db0b28cdc814d73c2895c4fb201798d81dcd63606b.png",
+      "PackagePath": "staticwebassets\\messageimg\\a534e0bc62a4a4a49c9cf4db0b28cdc814d73c2895c4fb201798d81dcd63606b.png"
     },
     {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\a610c07a6980aa600fb24484acfa4a28e16985f8fc3c80f79f970e88957229f8.png",
@@ -341,6 +397,10 @@
       "PackagePath": "staticwebassets\\messageimg\\d14c63a87744e404eda19bf523fa0769b2d18024938fe33607799f36f1b9a76b.png"
     },
     {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\d7c033104f415eaf69ff63b51c1f30d2a57b4a892d7f923250d3de90c9231cf9.png",
+      "PackagePath": "staticwebassets\\messageimg\\d7c033104f415eaf69ff63b51c1f30d2a57b4a892d7f923250d3de90c9231cf9.png"
+    },
+    {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\eaa782b86a8c1662c17969b8e97eaf61e0f577303fc35df74b1dece7dae7f358.png",
       "PackagePath": "staticwebassets\\messageimg\\eaa782b86a8c1662c17969b8e97eaf61e0f577303fc35df74b1dece7dae7f358.png"
     },
@@ -351,6 +411,22 @@
     {
       "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\f575b9009057b5f4d29f21d4073caa754143a0200fbc28a7d494269f1e4889a7.png",
       "PackagePath": "staticwebassets\\messageimg\\f575b9009057b5f4d29f21d4073caa754143a0200fbc28a7d494269f1e4889a7.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\messageimg\\fc39d724b844874728b24019dc23e304bf0a43aba6fd015ee141e94e0fa48571.png",
+      "PackagePath": "staticwebassets\\messageimg\\fc39d724b844874728b24019dc23e304bf0a43aba6fd015ee141e94e0fa48571.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\userimg\\780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png",
+      "PackagePath": "staticwebassets\\userimg\\780-7804962_cartoon-avatar-png-image-transparent-avatar-user-image.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\userimg\\default-user-img.png",
+      "PackagePath": "staticwebassets\\userimg\\default-user-img.png"
+    },
+    {
+      "Id": "F:\\Kostya\\Study\\Kursach\\Whisperer\\WebServer\\wwwroot\\userimg\\m0qujw7FsLo.jpg",
+      "PackagePath": "staticwebassets\\userimg\\m0qujw7FsLo.jpg"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.WebServer.Microsoft.AspNetCore.StaticWebAssets.props",

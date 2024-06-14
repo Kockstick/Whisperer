@@ -1,6 +1,6 @@
 @import url(site.css);
 
-:root {
+:root .message {
     --color-primary: #6C9BCF;
     --color-danger: #FF0060;
     --color-success: #1B9C85;
@@ -22,7 +22,7 @@
     --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
-.dark-mode-variables {
+.dark-mode-variables .message {
     --color-background: #181a1e;
     --color-white: #202528;
     --color-dark: #edeffd;
@@ -51,12 +51,12 @@ p, small{
     box-shadow: var(--box-shadow);
 }
 
-.message p,
+.message .message-text,
 .message small {
     overflow-wrap: break-word;
 }
 
-.message img{
+.message .message-image{
     width: 100%;
     border-radius: 5px;
     margin: 0.3rem 0;
@@ -68,7 +68,7 @@ p, small{
     border-radius: 15px 15px 5px 15px;
 }
 
-.my-message p,
+.my-message .message-text,
 .my-message small {
     color: white;
 }
@@ -91,4 +91,41 @@ p, small{
 
 .message .hidden {
     display: none;
+}
+
+.message .reply-panel{
+    overflow: hidden;
+    display: flex;
+    height: 3rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin: 0 0 0.5rem 0;
+    align-items: center;
+    border-radius: 5px;
+    gap: 0.5rem;
+    background-color: var(--color-light);
+    transition: all 0.3s ease;
+}
+
+.message .reply-panel p{
+    color: var(--color-dark);
+}
+
+.message .reply-panel img{
+    height: 2.5rem;
+    max-width: 4rem;
+    border-radius: 5px;
+}
+
+.my-message .reply-panel{
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.my-message .reply-panel p{
+    color: white;
+}
+
+.message .reply-panel-disable{
+    height: 0;
+    padding: 0;
+    margin: 0;
 }

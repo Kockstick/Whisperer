@@ -1,0 +1,80 @@
+.popup {
+    --color-primary: #6C9BCF;
+    --color-danger: #FF0060;
+    --color-success: #1B9C85;
+    --color-warning: #F7D060;
+    --color-white: rgba(255, 255, 255, 0.5);
+    --color-info-dark: #7d8da1;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-dark-variant: #677483;
+    --color-background: #f6f6f9;
+
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+.dark-mode-variables .popup{
+    --color-background: #181a1e;
+    --color-white: rgba(32, 37, 40, 0.5);
+    --color-dark: hwb(233 93% 1%);
+    --color-dark-variant: #a3bdcc;
+    --color-light: rgba(0, 0, 0, 0.4);
+    --box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+.popup{
+    flex-direction: column;
+    position: absolute;
+    width: 0;
+    height: 0;
+    z-index: 2;
+    background-color: var(--color-white);
+    backdrop-filter: blur(30px);
+    border-radius: 15px;
+    box-shadow: 0 0 5px 0px black;
+    opacity: 0;
+    padding: 1rem 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.popup-visible{
+    display: flex;
+    opacity: 1;
+    width: 13rem;
+    height: calc(3rem * 3 + 2rem);
+}
+
+.popup h2{
+    font-size: medium;
+    color: var(--color-dark);
+    margin: 0;
+    text-align: left;
+    align-self: center;
+}
+
+.popup button{
+    display: flex;
+    padding: 0.25rem 1rem;
+    background-color: transparent;
+    width: 100%;
+    height: 3rem;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.popup button:hover{
+    background-color: var(--color-light);
+}
+
+.popup button span{
+    color: var(--color-dark);
+    align-self: center;
+}

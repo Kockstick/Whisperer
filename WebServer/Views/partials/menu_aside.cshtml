@@ -2,30 +2,45 @@
 
 <aside>
     <div class="sidebar menu_sidebar">
-        <h2>Main menu</h2>
+        <h2>Меню</h2>
         <form asp-controller="Home" asp-action="Search" method="get">
             <button type="submit">
-                <h3>Search 🔍</h3>
+                <span class="material-symbols-sharp">
+                    search
+                </span>
+                <h3>Поиск</h3>
             </button>
         </form>
         <form asp-controller="User" asp-action="Profile" method="get">
             <button type="submit">
-                <h3>Profile 👤</h3>
+                <span class="material-symbols-sharp">
+                    person
+                </span>
+                <h3>Контакты</h3>
             </button>
         </form>
         <form asp-controller="Chat" asp-action="Create" method="get">
             <button type="submit">
-                <h3>Create ✏️</h3>
+                <span class="material-symbols-sharp">
+                    edit
+                </span>
+                <h3>Создать</h3>
             </button>
         </form>
         <form asp-controller="Home" asp-action="Settings" method="get">
             <button type="submit">
-                <h3>Settings ⚙️</h3>
+                <span class="material-symbols-sharp">
+                    tune
+                </span>
+                <h3>Настройки</h3>
             </button>
         </form>
         <form asp-controller="Account" asp-action="Logout" method="get">
             <button type="submit">
-                <h3>Logout</h3>
+                <span class="material-symbols-sharp">
+                    logout
+                </span>
+                <h3>Выйти</h3>
             </button>
         </form>
     </div>

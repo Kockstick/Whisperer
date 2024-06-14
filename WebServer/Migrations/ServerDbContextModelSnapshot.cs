@@ -87,6 +87,9 @@ namespace WebServer.Migrations
                     b.Property<string>("File")
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
                     b.Property<int?>("ReplyMessageId")
                         .HasColumnType("integer");
 

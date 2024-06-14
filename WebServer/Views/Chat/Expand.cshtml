@@ -20,9 +20,48 @@
     let inputImage = document.querySelector(".load-photo-container .input-file");
     let imagePreview = document.querySelector(".load-photo-container .image-preview");
     let okBtn = document.querySelector(".ok-button");
+    let chatLink = document.querySelector(".inputs-container .chat-link")
 
     loadChat();
     checkValid(chatName.value);
+
+    console.log(inputImage.files[0] == null);
+
+    okBtn.addEventListener("click", () => {
+        editChat();
+    });
+
+    async function editChat() {
+        let contacts = document.querySelectorAll(".contact-selected");
+        let idList = Array.from(contacts).map(contact => {
+            return contact.querySelector(".contact-id").value;
+        });
+
+        var image = inputImage.files[0];
+        var path = imagePreview.src;
+        if (image != null)
+            path = await uploadImage(image);
+
+        var createModel = {
+            Id: @ViewBag.Chat?.Id,
+            Name: chatName.value,
+            Description: chatDescription.value,
+            Image: path,
+            UsersId: idList,
+        }
+
+        fetch('/Chat/Edit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(createModel),
+            redirect: "follow",
+        }).then(response => {
+            if (response.redirected)
+                window.location.href = response.url;
+        });
+    }
 
     function loadChat() {
         chatName.value = "@ViewBag.Chat.Name";
@@ -31,6 +70,45 @@
         imagePreview.src = "@ViewBag.Chat.Image";
         if ("@ViewBag.Chat.Image" != "")
             imagePreview.style.opacity = 1;
+
+        var link = "localhost:5205/Chat/Invite?chatId=@ViewBag.Chat.Id"
+        chatLink.textContent += link;
+
+        chatLink.addEventListener("click", function () {
+            var textarea = document.createElement("textarea");
+            textarea.value = link;
+
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+
+            alert("Ссылка скопирована");
+        });
+    }
+
+    async function uploadImage(image) {
+        try {
+            var formData = new FormData();
+            formData.append('file', image);
+
+            const response = await fetch('/Chat/UploadChatImage/', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('Ошибка загрузки изображения');
+            }
+
+            const data = await response.json();
+            console.log('Ссылка на изображение:', data.imageUrl);
+            return data.imageUrl;
+        }
+        catch (error) {
+            console.error('Произошла ошибка:', error);
+            return "";
+        }
     }
 
     chatName.addEventListener("input", event => {

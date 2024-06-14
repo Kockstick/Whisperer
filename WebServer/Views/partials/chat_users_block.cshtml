@@ -2,9 +2,9 @@
 
 <div class="contacts-container">
     <div class="no-contacts-message">
-        <h3>No users in chat</h3>
+        <h3>В чате нет пользователей</h3>
         <form asp-controller="Home" asp-action="Search" method="get">
-            <button type="submit" class="button primary-btn">Search</button>
+            <button type="submit" class="button primary-btn">Найти</button>
         </form>
     </div>
 </div>
@@ -30,6 +30,8 @@
             idContact.value = user.id;
             let nameContact = contactItem.querySelector(".contact-name");
             nameContact.innerText = user.name;
+
+            divContact.classList.add("contact-selected");
 
             contactsContainer.appendChild(contactItem);
         });

@@ -12,8 +12,8 @@ using WebServer.Data;
 namespace WebServer.Migrations
 {
     [DbContext(typeof(ServerDbContext))]
-    [Migration("20240507053326_Ininitial")]
-    partial class Ininitial
+    [Migration("20240524101119_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -89,6 +89,9 @@ namespace WebServer.Migrations
 
                     b.Property<string>("File")
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
 
                     b.Property<int?>("ReplyMessageId")
                         .HasColumnType("integer");

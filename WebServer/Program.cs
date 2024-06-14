@@ -1,6 +1,10 @@
+using System.Globalization;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.WebEncoders;
 using Microsoft.IdentityModel.Tokens;
 using WebServer;
 using WebServer.Data;
@@ -17,7 +21,11 @@ builder.Services.AddSignalR(hubOptions =>
 });
 builder.Services.AddDbContext<ServerDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("WhispererDb")));
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options => options.LoginPath = "/Login"); ;
+    .AddCookie(options => options.LoginPath = "/Login");
+builder.Services.Configure<WebEncoderOptions>(options =>
+{
+    options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All);
+});
 
 var app = builder.Build();
 

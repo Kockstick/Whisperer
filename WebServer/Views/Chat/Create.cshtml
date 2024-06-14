@@ -92,3 +92,17 @@
         }
     }
 </script>
+
+<script>
+    function onClickContact(contactDiv) {
+
+        var userId = contactDiv.querySelector('.contact-id').value;
+        var userName = contactDiv.querySelector('.contact-name').textContent;
+        var user = { Id: userId, Name: userName };
+
+        if (contactDiv.classList.contains('contact-selected'))
+            contactDiv.classList.remove("contact-selected");
+        else
+            contactDiv.classList.add("contact-selected");
+    }
+</script>

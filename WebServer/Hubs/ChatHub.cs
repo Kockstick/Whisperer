@@ -9,7 +9,7 @@ using WebServer.Models;
 
 namespace WebServer.Hubs;
 
-public class ChatHub : Hub
+public class ChatHub : Hub<IChatHub>
 {
     ServerDbContext dbContext;
 
@@ -24,10 +24,14 @@ public class ChatHub : Hub
         {
             var chat = dbContext.Chats.Find(message.ChatId);
             message.Sender = dbContext.Users.Find(message.SenderId);
-            await Clients.Group(chat.Name).SendAsync("SendMessage", message); // OthersInGroup(chat.Name).SendAsync("SendMessage", message);
+
+            if (message.ReplyMessageId != null)
+                message.ReplyMessage = dbContext.Messages.Find(message.ReplyMessageId);
 
             dbContext.Messages.Add(message);
             dbContext.SaveChanges();
+
+            await Clients.Group(chat.Id.ToString()).ReceiveMessage(message); // OthersInGroup(chat.Name).SendAsync("SendMessage", message);
         }
         catch (Exception ex)
         {
@@ -35,30 +39,44 @@ public class ChatHub : Hub
         }
     }
 
-    public async Task<Chat> JoinAsync(string chatName)
+    public async Task Edit(Message message)
     {
-        var chat = dbContext.Chats.FirstOrDefault(c => c.Name == chatName);
-        if (chat == null)
-            return null;
-
-        await Groups.AddToGroupAsync(Context.ConnectionId, chatName);
-
-        var messages = dbContext.Messages.Where(c => c.ChatId == chat.Id).Include(u => u.Sender).ToList().OrderBy(i => i.Id).ToList();
-        for (int i = 0; i < messages.Count; i++)
+        try
         {
-            await Clients.Caller.SendAsync("SendMessage", messages[i]);
-        }
+            var chat = dbContext.Chats.Find(message.ChatId);
 
-        return chat;
+            var existMessage = dbContext.Messages.Find(message.Id);
+            existMessage.Text = message.Text;
+            existMessage.File = message.File;
+            dbContext.SaveChanges();
+
+            await Clients.Group(chat.Id.ToString()).EditMessage(message);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.ToString());
+        }
     }
 
-    public async Task LeaveAsync(string chatName)
+    public async Task Delete(Message message)
     {
-        var chat = dbContext.Chats.FirstOrDefault(c => c.Name == chatName);
-        if (chat == null)
-            return;
+        try
+        {
+            var chat = dbContext.Chats.Find(message.ChatId);
 
-        await Groups.RemoveFromGroupAsync(Context.ConnectionId, chatName);
+            var existMessage = dbContext.Messages.Find(message.Id);
+            if (existMessage == null)
+                return;
+
+            existMessage.IsDeleted = true;
+            dbContext.SaveChanges();
+
+            await Clients.Group(chat.Id.ToString()).DeleteMessage(message);
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.ToString());
+        }
     }
 
     public override Task OnConnectedAsync()

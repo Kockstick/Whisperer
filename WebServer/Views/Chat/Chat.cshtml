@@ -15,17 +15,30 @@
         <input id="clip-input" class="default-elem" type="file" multiple accept="image/*"
             style="position: absolute; opacity: 0;">
         <div class=" message-input-container default-elem">
+
+            <div class="reply-panel reply-panel-disable">
+                <span class="material-symbols-sharp">
+                    reply
+                </span>
+                <img src="">
+                <p></p>
+                <span class="reply-cansel material-symbols-outlined">
+                    close
+                </span>
+            </div>
+
             <!--div class="enable images-container">
             </div/!-->
+
             <img id="message-image">
-            <input id="message-input" autofocus placeholder="Type something..." autocomplete="off" />
+            <input id="message-input" autofocus placeholder="Введите текст..." autocomplete="off" />
         </div>
         <button id="send-btn" class="btn default-elem"><span class="material-symbols-sharp">send</span></button>
     </div>
 </div>
 
 <partial name="~/Views/partials/message_template.cshtml" />
-
+<partial name="~/Views/partials/popup-msg.cshtml" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
 
@@ -91,6 +104,8 @@
     var ChatRoom = document.querySelector(".chatroom");
     var ScrollCont = document.querySelector(".chatroom-container");
 
+    var replyMessage = null;
+
     var hubConnection = new signalR.HubConnectionBuilder()
         .withUrl("/Chat")
         .build();
@@ -106,15 +121,18 @@
         sendMessage();
     }
 
-    hubConnection.on("SendMessage", function (message) {
-        /*if (Request.Cookies["id"].Value == null)
-            return;*/
-        //let id = Request.Cookies["id"].Value;
+    hubConnection.on("ReceiveMessage", function (message) {
         var id = getCookie("id");
         if (message.senderId == id)
             printMessage(message, "my-message");
         else
             printMessage(message, "other-message");
+    });
+
+    hubConnection.on("DeleteMessage", function (message) {
+        var messageDoc = document.getElementById("message-" + message.id);
+        if (messageDoc)
+            messageDoc.remove();
     });
 
     function getCookie(name) {
@@ -126,10 +144,10 @@
         var template = document.getElementById("message-template");
         var mesElem = template.content.cloneNode(true);
 
-        var paragraph = mesElem.querySelector("p");
+        var paragraph = mesElem.querySelector(".message-text");
         paragraph.appendChild(document.createTextNode(message.text));
 
-        var image = mesElem.querySelector("img");
+        var image = mesElem.querySelector(".message-image");
         image.src = message.file;
         if (message.file == null)
             image.classList.add('hidden');
@@ -138,15 +156,39 @@
         var messageDate = new Date(message.date);
         date.appendChild(document.createTextNode(getNiceDate(messageDate)));
 
+        var senderIdInput = mesElem.querySelector("input[name='senderId']");
+        senderIdInput.value = message.senderId;
+
         var name = mesElem.getElementById("name-message");
         //if (message.sender != null)
         name.appendChild(document.createTextNode(message.sender?.name));
 
         paragraph.parentNode.classList.add(classes);
 
-        var firstEl = ChatRoom.firstChild;
+        if (message.replyMessageId != null) {
+            mesElem.querySelector('.reply-panel p').textContent = message.replyMessage?.text == "" ? "image" : message.replyMessage?.text;
+            if (message.replyMessage?.file != null && message.replyMessage?.file != "http://localhost:5205/Chat/null") {
+                const imageReplyPanel = mesElem.querySelector('.reply-panel img');
+                imageReplyPanel.style.display = 'flex';
+                imageReplyPanel.src = message.replyMessage?.file;
+            }
+            mesElem.querySelector('.reply-panel').classList.remove('reply-panel-disable');
+        }
 
+        var m = mesElem.querySelector(".message-image").parentNode;
         ChatRoom.appendChild(mesElem);
+
+        m.dataset.messageId = message.id;
+        m.id = "message-" + message.id;
+
+        m.addEventListener("contextmenu", function (event) {
+            event.preventDefault();
+
+            var messageId = event.target.closest('.message').dataset.messageId;
+            var messageDoc = document.getElementById("message-" + messageId);
+
+            callPopup(event, messageDoc);
+        });
 
         ScrollCont.scrollTop = 9999;
     }
@@ -168,7 +210,9 @@
                     text: text,
                     file: path,
                     sender: null,
-                    date: new Date()
+                    date: new Date(),
+                    ReplyMessageId: replyMessage?.Id
+                    //ReplyMessage: replyMessage
                 };
                 hubConnection.invoke("Send", message);
             }
@@ -179,10 +223,15 @@
                 SenderId: @ViewBag.User.Id,
                 text: text,
                 sender: null,
-                date: new Date()
+                date: new Date(),
+                ReplyMessageId: replyMessage?.Id
+                //ReplyMessage: replyMessage
             };
             hubConnection.invoke("Send", message);
         }
+
+        hideReplyPanel();
+        replyMessage = null;
 
         //printMessage(message, "my-message");
 
@@ -232,6 +281,89 @@
 
     hubConnection.start()
         .then(function () {
-            hubConnection.invoke("JoinAsync", "@ViewBag.Chat.Name");
+            hubConnection.invoke("JoinAsync", @ViewBag.Chat.Id);
         });
+</script>
+
+<script>
+    const enableClass = "popup-visible";
+    const popup = document.querySelector('.popup');
+    const popupReply = document.querySelector('.popup .reply-btn');
+    const popupEdit = document.querySelector('.popup .edit-btn');
+    const popupDelete = document.querySelector('.popup .delete-btn');
+
+    const replyPanel = document.querySelector("#input-row .reply-panel");
+    const imageReplyPanel = replyPanel.querySelector('img');
+    const textReplyPanel = replyPanel.querySelector('p');
+    const closeReplyPanel = replyPanel.querySelector('.reply-cansel');
+    const replyPanelDisable = "reply-panel-disable";
+
+    var popupMessage;
+
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+
+    popup.addEventListener("mouseleave", function (event) {
+        hidePopup();
+    });
+
+    function callPopup(e, m) {
+        if (!popup.classList.contains(enableClass))
+            popup.classList.add(enableClass);
+        popup.style.left = 'calc(' + e.pageX + 'px - 5rem';
+        popup.style.top = 'calc(' + e.pageY + 'px - calc((3rem * 3 + 2rem) * 0.5)';
+
+        popupMessage = {
+            Id: parseInt(m.dataset.messageId),
+            ChatId: @ViewBag.Chat?.Id,
+            SenderId: parseInt(m.querySelector("input[name='senderId']").value),
+            text: m.querySelector(".message-text").textContent,
+            file: m.querySelector(".message-image").src,
+            sender: null
+        };
+    }
+
+    function hidePopup() {
+        if (popup.classList.contains(enableClass))
+            popup.classList.remove(enableClass);
+        popupMessage = null;
+    }
+
+    document.addEventListener('click', function (e) {
+        hidePopup();
+    });
+
+    popupReply.addEventListener('click', () => {
+        replyMessage = popupMessage;
+        popupMessage = null;
+
+        textReplyPanel.textContent = replyMessage?.text == "" ? "image" : replyMessage?.text;
+        if (replyMessage?.file != null && replyMessage?.file != "http://localhost:5205/Chat/null") {
+            imageReplyPanel.style.display = 'flex';
+            imageReplyPanel.src = replyMessage?.file;
+        }
+
+        if (replyPanel.classList.contains(replyPanelDisable))
+            replyPanel.classList.remove(replyPanelDisable);
+    });
+
+    function hideReplyPanel() {
+        if (!replyPanel.classList.contains(replyPanelDisable))
+            replyPanel.classList.add(replyPanelDisable);
+        textReplyPanel.textContent = null;
+        imageReplyPanel.src = null;
+        imageReplyPanel.style.display = 'none';
+        popupMessage = null;
+    }
+
+    closeReplyPanel.addEventListener('click', () => {
+        hideReplyPanel();
+    });
+
+    popupDelete.addEventListener('click', () => {
+        hubConnection.invoke("Delete", popupMessage);
+        hidePopup();
+        hideReplyPanel();
+    });
 </script>

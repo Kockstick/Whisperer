@@ -62,8 +62,12 @@ public class AccountController : Controller
     {
         try
         {
+            if (dbContext.Users.FirstOrDefault(u => u.Login == user.Login) != null)
+                return RedirectToAction("SingUp");
+
             dbContext.Users.Add(user);
             dbContext.SaveChanges();
+
             return RedirectToAction("Login");
         }
         catch

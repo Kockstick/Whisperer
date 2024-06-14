@@ -15,6 +15,7 @@ namespace WebServer.Models
         public string? Text { get; set; }
         public string? File { get; set; }
         public int? ReplyMessageId { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public Chat Chat { get; set; }
         public User Sender { get; set; }

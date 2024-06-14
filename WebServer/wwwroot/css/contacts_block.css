@@ -11,42 +11,70 @@
     overflow-y: scroll;
     gap: 1rem;
     padding: 1rem;
-    border-top:  2px dashed var(--color-light);
-    border-bottom:  2px dashed var(--color-light);
+    border-top:  2px solid var(--color-light);
+    border-bottom:  2px solid var(--color-light);
     box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0);
     transition: all 0.5s ease;
 }
 
-.contacts-container:hover{
-    border-top:  2px dashed var(--color-dark-variant);
-    border-bottom:  2px dashed var(--color-dark-variant);
-}
+/* .contacts-container:hover{
+    border-top:  2px solid var(--color-dark-variant);
+    border-bottom:  2px solid var(--color-dark-variant);
+} */
 
 .contacts-container .contact{
     position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    align-items: start;
     justify-content: center;
-    width: calc(100% / 3 - 0.7rem);
-    aspect-ratio: 1/1;
-    background-color: var(--color-white);
-    border: 2px solid var(--color-light);
-    border-radius: 15px;
+    width: 100%;
     cursor: pointer;
-    box-shadow: -0px 0px 0px 0px var(--color-light), -0px 0px 0px 0px var(--color-light);
-    
+    padding: 1rem 0;
     gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.dash-line{
+    width: 100%;
+    height: 0%;
+    align-self: center;
+    border-bottom: 2px dashed var(--color-light);
     transition: all 0.5s ease;
 }
 
-.contacts-container .contact:hover{
-    box-shadow: -5px 5px 0px 0px var(--color-light), -10px 10px 0px 0px var(--color-light);
-    translate: 10px -10px;
+.contacts-container .contact:hover .dash-line{
+    border-bottom: 2px dashed var(--color-dark-variant);
 }
 
-.contacts-container .contact-selected{
-    border: 2px solid var(--color-primary);
+.contacts-container .contact span{
+    font-size: xx-large;
+    text-align: center;
+    align-content: center;
+    cursor: pointer;
+}
+
+.contact .person-add{
+    display: unset;
+    width: auto;
+    color: var(--color-primary);
+    transition: all 0.5s ease;
+}
+
+.contact-selected .person-add{
+    display: none;
+    width: 0;
+}
+
+.contact .person-cansel{
+    display: none;
+    width: 0;
+    color: var(--color-danger);
+    transition: all 0.5s ease;
+}
+
+.contact-selected .person-cansel{
+    display: unset;
+    width: auto;
 }
 
 .contacts-container .contact img{

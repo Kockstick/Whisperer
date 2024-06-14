@@ -2,10 +2,17 @@
 
 <template id="message-template">
     <div class="message">
+        <input name="senderId" type="hidden">
+
         <small id="name-message"></small>
 
-        <img src="">
-        <p></p>
+        <div class="reply-panel reply-panel-disable">
+            <img class="reply-image" src="">
+            <p class="reply-text">helo</p>
+        </div>
+
+        <img class="message-image" src="">
+        <p class="message-text"></p>
 
         <div class="down-row">
             <small id="date-message"></small>

@@ -46,8 +46,13 @@ h3 {
 }
 
 aside {
+    display: flex;
+    flex-direction: column;
     height: 100vh;
     width: 100%;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    gap: 1rem;
 }
 
 aside .sidebar {
@@ -57,9 +62,7 @@ aside .sidebar {
     box-shadow: var(--box-shadow);
     border-radius: 15px;
     position: relative;
-    top: 1.5rem;
-    margin-bottom: 10rem;
-    height: calc(100vh - 3rem);
+    height: 100%;
     overflow: hidden;
     transition: all 0.3s ease;
 }

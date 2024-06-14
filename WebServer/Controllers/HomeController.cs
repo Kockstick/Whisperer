@@ -98,6 +98,12 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult Settings()
     {
+        try
+        {
+            var user = getUser();
+            ViewBag.User = user;
+        }
+        catch { }
         return View();
     }
 

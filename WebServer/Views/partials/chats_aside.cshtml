@@ -2,21 +2,27 @@
 
 <aside>
     <div class="sidebar chats_sidebar">
-        <h2>Your chats</h2>
+        <h2>Чаты</h2>
     </div>
+    <button class="call-manager-button hide-call-manager-button primary-btn default-elem">
+        <h2>
+            Менеджер
+        </h2>
+    </button>
 </aside>
 
 <template id="chat-item_template">
-    <form class="">
+    <form class="chat-item">
         <input name="User" class="visually-hidden" value="@ViewBag.User" />
         <input name="Id" class="visually-hidden" value="" />
         <input name="Name" class="visually-hidden" value="" />
         <button asp-controller="Chat" asp-action="Chat" type="submit">
+            <img>
             <h3></h3>
         </button>
         <button id="expand-chat-btn" asp-controller="Chat" asp-action="Expand">
             <span type="submit" class="material-symbols-sharp">
-                bottom_panel_open
+                expand_content
             </span>
         </button>
     </form>
@@ -35,6 +41,9 @@
                 chatItem.querySelector('input[name="Id"]').value = chat.id;
                 chatItem.querySelector('input[name="Name"]').value = chat.name;
                 chatItem.querySelector('h3').textContent = chat.name;
+                chatItem.querySelector('img').src = chat.image;
+                if (chat.image == "")
+                    chatItem.querySelector('img').classList.add("hide-img");
 
                 if (activeChatId == chat.id) {
                     chatItem.querySelector('form').classList.add('active');
@@ -55,6 +64,51 @@
             return chats;
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
+        }
+    }
+</script>
+
+<script>
+    var callManagerBtn = document.querySelector(".call-manager-button");
+
+    IsManager().then(value => {
+        if (!value)
+            callManagerBtn.classList.remove("hide-call-manager-button");
+    });
+
+    callManagerBtn.addEventListener("click", () => {
+        fetch('/Chat/CreaterHelpChat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            redirect: "follow",
+        }).then(response => {
+            if (response.redirected)
+                window.location.href = response.url;
+        });
+    });
+
+    async function IsManager() {
+        try {
+            let response = await fetch('/User/IsManager?', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+
+            if (!response.ok) {
+                console.log("Error query");
+                return false;
+            }
+
+            console.log(response);
+
+            return true;
+        } catch (error) {
+            console.error('Ошибка:', error);
+            return false; // В случае ошибки возвращаем пустой список
         }
     }
 </script>

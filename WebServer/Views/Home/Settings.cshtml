@@ -5,15 +5,111 @@
 <link rel="stylesheet" href="~/css/settings.css" asp-append-version="true" />
 
 <div class="main-container">
-    <div>
-        <button id="changeThemeBtn" class="button">
-            <h2>Light</h2>
-        </button>
+    <div class="default-elem settings-container">
+        @* <button id="changeThemeBtn" class="button">
+        <h2>Light</h2>
+        </button> *@
+        <img src="http://localhost:5205/userimg/m0qujw7FsLo.jpg" class="profile-image">
+        <div class="profile-settings-block">
+            <div class="sub-block">
+                <h3>Имя:</h3>
+                <div>
+                    <input class="profile-name default-elem" value="">
+                    <span class="material-symbols-sharp save-name-btn">
+                        save
+                    </span>
+                    <span class="loader"></span>
+                </div>
+
+            </div>
+        </div>
+        <div class="profile-settings-block">
+            <div class="sub-block">
+                <h3>Логин:</h3>
+                <h2>admin</h2>
+            </div>
+            <div class="sub-block">
+                <h3>Пароль:</h3>
+                <h2>*****</h2>
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
-    let toggleThemeButton = document.getElementById("changeThemeBtn");
+    var loader = document.querySelector(".loader");
+    var saveNameBtn = document.querySelector(".save-name-btn");
+    var profileNameInput = document.querySelector(".profile-name");
+    var initialName = "@ViewBag.User.Name";
+
+    loadUser();
+
+    saveNameBtn.addEventListener("click", () => {
+        onSaveClick();
+    });
+
+    async function onSaveClick() {
+        try {
+            loader.classList.add("loader-enabled");
+
+            var res = await ChangeName(profileNameInput.value);
+            initialName = profileNameInput.value;
+
+            if (profileNameInput.value !== initialName) {
+                saveNameBtn.classList.add("save-name-btn-enabled");
+            } else {
+                saveNameBtn.classList.remove("save-name-btn-enabled");
+            }
+
+            loader.classList.remove("loader-enabled");
+        }
+        catch { }
+    }
+
+    profileNameInput.addEventListener("input", () => {
+        try {
+            if (profileNameInput.value !== initialName) {
+                saveNameBtn.classList.add("save-name-btn-enabled");
+            } else {
+                saveNameBtn.classList.remove("save-name-btn-enabled");
+            }
+        }
+        catch { }
+    });
+
+    function loadUser() {
+        profileNameInput.value = "@ViewBag.User.Name";
+    }
+
+    async function ChangeName(text) {
+        try {
+            let response = await fetch('/User/ChangeName?', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(text)
+            });
+
+            if (!response.ok) {
+                console.log("Error query");
+                return false;
+            }
+
+            console.log(response);
+
+            return true;
+        } catch (error) {
+            console.error('Ошибка:', error);
+            return false; // В случае ошибки возвращаем пустой список
+        }
+    }
+</script>
+
+
+
+<script>
+    /*let toggleThemeButton = document.getElementById("changeThemeBtn");
     let _body = document.querySelector("body");
 
     let _darkThemeClass = "dark-mode-variables";
@@ -35,5 +131,5 @@
             _body.classList.add(_darkThemeClass)
             saveTheme("dark");
         }
-    }
+    }*/
 </script>

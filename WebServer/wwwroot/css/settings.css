@@ -30,3 +30,122 @@
     --color-light: rgba(0, 0, 0, 0.4);
     --box-shadow: 0 2rem 3rem var(--color-light);
 }
+
+.settings-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    align-items: start;
+    padding: 4rem;
+    background-color: var(--color-white);
+}
+
+.settings-container .profile-settings-block{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+    gap:1.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px dashed var(--color-dark-variant);
+}
+
+.settings-container .profile-settings-block .sub-block{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 0.5rem;
+}
+
+.sub-block .save-name-btn{
+    color: transparent;
+    font-size: xx-large;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sub-block .save-name-btn-enabled{
+    color: var(--color-primary);
+}
+
+.sub-block div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.profile-image {
+    height: 30vh;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    box-shadow: 0 0 10px 5px var(--color-light);
+    z-index: 1;
+    cursor: pointer;
+    align-self: center;
+    margin-bottom: 4rem;
+    transition: all 0.3s ease;
+}
+
+.profile-image:hover{
+    box-shadow: 0 0 0px 1px var(--color-light);
+}
+
+.settings-container input{
+    min-width: 60%;
+    font-size: large;
+    color: var(--color-dark);
+    background-color: var(--color-white);
+    border: 2px solid var(--color-light);
+    border-radius: 15px;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0);
+    transition: all 0.5s ease;
+}
+
+.settings-container input:hover{
+    box-shadow: 0 0 1px 1px var(--color-primary);
+}
+
+.settings-container h3{
+    margin: 0;
+    text-align: start;
+}
+
+
+
+
+
+
+
+
+
+.sub-block .loader {
+    width: 1.5rem;
+    height: 1.5rem;
+    aspect-ratio: 1/1;
+    border: 2px solid transparent;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    transition: all 0.3s ease;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+
+    .sub-block .loader-enabled{
+        border: 2px solid var(--color-dark);
+        border-bottom-color: transparent;
+    }

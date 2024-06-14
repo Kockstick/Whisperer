@@ -6,5 +6,46 @@
 
 <div class="main-container">
     <div class="default-elem profile-container">
+        @if (ViewBag.User != null)
+        {
+            <div class="profile-info">
+                <h3>Контакты</h3>
+                <partial name="~/Views/partials/contacts_block.cshtml" />
+            </div>
+        }
+        else
+        {
+            <p>User not found</p>
+        }
     </div>
 </div>
+
+<script>
+    function onClickContact(contactDiv) {
+
+        var userId = contactDiv.querySelector('.contact-id').value;
+        var userName = contactDiv.querySelector('.contact-name').textContent;
+        var user = { Id: userId, Name: userName };
+
+        if (contactDiv.classList.contains('contact-selected')) {
+            if (!confirm("Удалить " + userName + " из списка контактов?"))
+                return;
+
+            if (contactDiv.classList.contains('contact-selected'))
+                contactDiv.classList.remove("contact-selected");
+            else
+                contactDiv.classList.add("contact-selected");
+
+            sendRequest('/Home/RemoveContact', 'POST', user);
+        }
+        else {
+            if (contactDiv.classList.contains('contact-selected'))
+                contactDiv.classList.remove("contact-selected");
+            else
+                contactDiv.classList.add("contact-selected");
+
+
+            sendRequest('/Home/AddContact', 'POST', user);
+        }
+    }
+</script>
